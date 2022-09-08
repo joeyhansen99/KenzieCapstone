@@ -2,21 +2,35 @@ package com.kenzie.appserver.service.model;
 
 public class Card {
 
+    private String id; // unique id number
     private String name; // name of card
     private String set; // card set
     private boolean foil; // does card have foil finish
     private boolean fullArt; // does card display full art
+    private int quantity; // number of this card in collection
     private int cost; // combined mana cost of card
     private Color color; // color of card
     private Type type; // type of card
     private Rarity rarity; // rarity of card
 
     enum Color {
-        WHITE,
-        BLUE,
         BLACK,
+        BLUE,
+        GREEN,
         RED,
-        GREEN
+        WHITE,
+        BLACK_BLUE,
+        BLACK_GREEN,
+        BLACK_RED,
+        BLACK_WHITE,
+        BLUE_GREEN,
+        BLUE_RED,
+        BLUE_WHITE,
+        GREEN_RED,
+        GREEN_WHITE,
+        RED_WHITE,
+        THREE_COLOR,
+        COLORLESS
     }
 
     enum Type {
@@ -45,16 +59,26 @@ public class Card {
     public Card() {
     }
 
-    public Card(String name, String set, boolean foil, boolean fullArt, int cost, Color color, Type type, Rarity rarity)
-    {
+    public Card(String id, String name, String set, boolean foil, boolean fullArt, int quantity, int cost, Color color,
+                Type type, Rarity rarity) {
+        this.id = id;
         this.name = name;
         this.set = set;
         this.foil = foil;
         this.fullArt = fullArt;
+        this.quantity = quantity;
         this.cost = cost;
         this.color = color;
         this.type = type;
         this.rarity = rarity;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getName() {
