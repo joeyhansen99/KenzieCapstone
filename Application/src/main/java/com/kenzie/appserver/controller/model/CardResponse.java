@@ -133,9 +133,7 @@ public class CardResponse {
         cardResponse.setType(card.getType());
         cardResponse.setRarity(card.getRarity());
 
-
         return cardResponse;
-
 
     }
 
