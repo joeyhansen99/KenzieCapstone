@@ -38,49 +38,6 @@ public class CreateCardRequest {
     @JsonProperty("rarity")
     public Card.Rarity rarity; // rarity of card
 
-//    enum Color {
-//        BLACK,
-//        BLUE,
-//        GREEN,
-//        RED,
-//        WHITE,
-//        BLACK_BLUE,
-//        BLACK_GREEN,
-//        BLACK_RED,
-//        BLACK_WHITE,
-//        BLUE_GREEN,
-//        BLUE_RED,
-//        BLUE_WHITE,
-//        GREEN_RED,
-//        GREEN_WHITE,
-//        RED_WHITE,
-//        THREE_COLOR,
-//        COLORLESS
-//    }
-
-//    enum Type {
-//        ARTIFACT,
-//        CONSPIRACY,
-//        CREATURE,
-//        ENCHANTMENT,
-//        INSTANT,
-//        LAND,
-//        PHENOMENON,
-//        PLANE,
-//        PLANESWALKER,
-//        SCHEME,
-//        SORCERY,
-//        TRIBAL,
-//        VANGUARD
-//    }
-
-//    enum Rarity {
-//        COMMON,
-//        UNCOMMON,
-//        RARE,
-//        MYTHIC_RARE
-//    }
-
     public CreateCardRequest (){
 
     }

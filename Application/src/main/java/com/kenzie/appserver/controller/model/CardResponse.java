@@ -2,6 +2,7 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kenzie.appserver.service.model.Card;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CardResponse {
@@ -27,56 +28,16 @@ public class CardResponse {
     private int cost; // combined mana cost of card
 
     @JsonProperty("color")
-    private CreateCardRequest.Color color; // color of card
+    public Card.Color color; // color of card
 
     @JsonProperty("type")
-    private CreateCardRequest.Type type; // type of card
+    public Card.Type type; // type of card
 
     @JsonProperty("rarity")
-    private CreateCardRequest.Rarity rarity; // rarity of card
+    public Card.Rarity rarity; // rarity of card
 
-    enum Color {
-        BLACK,
-        BLUE,
-        GREEN,
-        RED,
-        WHITE,
-        BLACK_BLUE,
-        BLACK_GREEN,
-        BLACK_RED,
-        BLACK_WHITE,
-        BLUE_GREEN,
-        BLUE_RED,
-        BLUE_WHITE,
-        GREEN_RED,
-        GREEN_WHITE,
-        RED_WHITE,
-        THREE_COLOR,
-        COLORLESS
-    }
 
-    enum Type {
-        ARTIFACT,
-        CONSPIRACY,
-        CREATURE,
-        ENCHANTMENT,
-        INSTANT,
-        LAND,
-        PHENOMENON,
-        PLANE,
-        PLANESWALKER,
-        SCHEME,
-        SORCERY,
-        TRIBAL,
-        VANGUARD
-    }
 
-    enum Rarity {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        MYTHIC_RARE
-    }
 
     public String getId() {
         return id;
@@ -134,27 +95,27 @@ public class CardResponse {
         this.cost = cost;
     }
 
-    public CreateCardRequest.Color getColor() {
+    public Card.Color getColor() {
         return color;
     }
 
-    public void setColor(CreateCardRequest.Color color) {
+    public void setColor(Card.Color color) {
         this.color = color;
     }
 
-    public CreateCardRequest.Type getType() {
+    public Card.Type getType() {
         return type;
     }
 
-    public void setType(CreateCardRequest.Type type) {
+    public void setType(Card.Type type) {
         this.type = type;
     }
 
-    public CreateCardRequest.Rarity getRarity() {
+    public Card.Rarity getRarity() {
         return rarity;
     }
 
-    public void setRarity(CreateCardRequest.Rarity rarity) {
+    public void setRarity(Card.Rarity rarity) {
         this.rarity = rarity;
     }
 }
