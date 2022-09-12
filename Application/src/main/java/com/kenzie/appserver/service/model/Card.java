@@ -1,5 +1,11 @@
 package com.kenzie.appserver.service.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
+@DynamoDBTable(tableName = "cards")
 public class Card {
 
     private String id; // unique id number
@@ -72,43 +78,52 @@ public class Card {
         this.type = type;
         this.rarity = rarity;
     }
-
+    @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
     }
 
+    @DynamoDBAttribute(attributeName = "quantity")
     public int getQuantity() {
         return quantity;
     }
 
+    @DynamoDBRangeKey(attributeName = "name")
     public String getName() {
         return name;
     }
 
+    @DynamoDBAttribute(attributeName = "set")
     public String getSet() {
         return set;
     }
 
+    @DynamoDBAttribute(attributeName = "foil")
     public boolean isFoil() {
         return foil;
     }
 
+    @DynamoDBAttribute(attributeName = "fullArt")
     public boolean isFullArt() {
         return fullArt;
     }
 
+    @DynamoDBAttribute(attributeName = "cost")
     public int getCost() {
         return cost;
     }
 
+    @DynamoDBAttribute(attributeName = "color")
     public Color getColor() {
         return color;
     }
 
+    @DynamoDBAttribute(attributeName = "type")
     public Type getType() {
         return type;
     }
 
+    @DynamoDBAttribute(attributeName = "rarity")
     public Rarity getRarity() {
         return rarity;
     }
