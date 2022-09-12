@@ -118,4 +118,28 @@ public class CardResponse {
     public void setRarity(Card.Rarity rarity) {
         this.rarity = rarity;
     }
+
+    public static CardResponse CreateCardResponse(Card card){
+
+        CardResponse cardResponse = new CardResponse();
+        cardResponse.setId(card.getId());
+        cardResponse.setName(card.getName());
+        cardResponse.setSet(card.getSet());
+        cardResponse.setFoil(card.isFoil());
+        cardResponse.setFullArt(card.isFullArt());
+        cardResponse.setQuantity(card.getQuantity());
+        cardResponse.setCost(card.getCost());
+        cardResponse.setColor(card.getColor());
+        cardResponse.setType(card.getType());
+        cardResponse.setRarity(card.getRarity());
+
+
+        return cardResponse;
+
+
+    }
+
+
+
+
 }
