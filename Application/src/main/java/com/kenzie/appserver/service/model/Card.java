@@ -15,11 +15,11 @@ public class Card {
     private boolean fullArt; // does card display full art
     private int quantity; // number of this card in collection
     private int cost; // combined mana cost of card
-    private Color color; // color of card
-    private Type type; // type of card
-    private Rarity rarity; // rarity of card
+    public Color color; // color of card
+    public Type type; // type of card
+    public Rarity rarity; // rarity of card
 
-    enum Color {
+    public enum Color {
         BLACK,
         BLUE,
         GREEN,
@@ -39,7 +39,7 @@ public class Card {
         COLORLESS
     }
 
-    enum Type {
+    public enum Type {
         ARTIFACT,
         CONSPIRACY,
         CREATURE,
@@ -55,7 +55,7 @@ public class Card {
         VANGUARD
     }
 
-    enum Rarity {
+    public enum Rarity {
         COMMON,
         UNCOMMON,
         RARE,
@@ -65,8 +65,8 @@ public class Card {
     public Card() {
     }
 
-    public Card(String id, String name, String set, boolean foil, boolean fullArt, int quantity, int cost, Color color,
-                Type type, Rarity rarity) {
+    public Card(String id, String name, String set, boolean foil, boolean fullArt, int quantity, int cost, Card.Color color,
+                Card.Type type, Card.Rarity rarity) {
         this.id = id;
         this.name = name;
         this.set = set;
