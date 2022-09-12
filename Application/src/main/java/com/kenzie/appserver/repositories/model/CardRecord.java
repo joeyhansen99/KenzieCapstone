@@ -120,7 +120,6 @@ public class CardRecord {
     public void setSet(String set) {
         this.set = set;
     }
-
     public void setFoil(boolean foil) {
         this.foil = foil;
     }
