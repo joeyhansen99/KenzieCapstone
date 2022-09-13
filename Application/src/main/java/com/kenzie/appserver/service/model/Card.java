@@ -5,6 +5,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
+import java.util.UUID;
+
 @DynamoDBTable(tableName = "cards")
 public class Card {
 
@@ -65,9 +67,9 @@ public class Card {
     public Card() {
     }
 
-    public Card(String id, String name, String set, boolean foil, boolean fullArt, int quantity, int cost, Card.Color color,
+    public Card(String name, String set, boolean foil, boolean fullArt, int quantity, int cost, Card.Color color,
                 Card.Type type, Card.Rarity rarity) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.set = set;
         this.foil = foil;
