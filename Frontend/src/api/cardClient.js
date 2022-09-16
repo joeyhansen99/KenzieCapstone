@@ -44,7 +44,7 @@ export default class CardClient extends BaseClass {
     }
 
 
-//    //standing by for changes.
+//    //standing by for changes. Jet
 //    async updateCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
 //            try {
 //                const response = await this.client.put(`/cards`,
