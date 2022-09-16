@@ -19,7 +19,7 @@ export default class CardClient extends BaseClass {
         }
     }
 
-    //describes this method doesnt execute until called
+    //async means this method doesnt execute until called
     async createCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
         try {
             //const = constant
@@ -42,6 +42,29 @@ export default class CardClient extends BaseClass {
             this.handleError('createCard', error, errorCallback);
         }
     }
+
+
+//    //standing by for changes. Jet
+//    async updateCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
+//            try {
+//                const response = await this.client.put(`/cards`,
+//                {
+//                    "id": id,
+//                    "name": name,
+//                    "set": set,
+//                    "foil": foil,
+//                    "fullArt": fullArt,
+//                    "quantity": quantity,
+//                    "cost": cost,
+//                    "color": color,
+//                    "type": type,
+//                    "rarity": rarity,
+//                });
+//                return response.data;
+//            } catch (error) {
+//                this.handleError('createCard', error, errorCallback);
+//            }
+//        }
 
 
     async getCard(id, errorCallback) {
