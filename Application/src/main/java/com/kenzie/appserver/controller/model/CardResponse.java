@@ -2,7 +2,8 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.Card;
+import com.kenzie.appserver.service.model.CardRarity;
+import com.kenzie.appserver.service.model.CardType;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CardResponse {
@@ -28,13 +29,13 @@ public class CardResponse {
     private int cost; // combined mana cost of card
 
     @JsonProperty("color")
-    public Card.Color color; // color of card
+    public CardColor color; // color of card
 
     @JsonProperty("type")
-    public Card.Type type; // type of card
+    public CardType type; // type of card
 
     @JsonProperty("rarity")
-    public Card.Rarity rarity; // rarity of card
+    public CardRarity rarity; // rarity of card
 
 
 
@@ -95,27 +96,27 @@ public class CardResponse {
         this.cost = cost;
     }
 
-    public Card.Color getColor() {
+    public CardColor getCardColor() {
         return color;
     }
 
-    public void setColor(Card.Color color) {
+    public void setCardColor(CardColor color) {
         this.color = color;
     }
 
-    public Card.Type getType() {
+    public CardType getCardType() {
         return type;
     }
 
-    public void setType(Card.Type type) {
+    public void setCardType(CardType type) {
         this.type = type;
     }
 
-    public Card.Rarity getRarity() {
+    public CardRarity getCardRarity() {
         return rarity;
     }
 
-    public void setRarity(Card.Rarity rarity) {
+    public void setCardRarity(CardRarity rarity) {
         this.rarity = rarity;
     }
 }
