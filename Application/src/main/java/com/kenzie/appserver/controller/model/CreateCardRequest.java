@@ -2,6 +2,7 @@ package com.kenzie.appserver.controller.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
 
