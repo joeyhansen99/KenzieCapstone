@@ -33,15 +33,12 @@ public class CardController {
 
     @PostMapping
     public ResponseEntity<CardResponse> addCard(@RequestBody CreateCardRequest createCardRequest) throws Exception {
-        Card card = new Card(randomUUID().toString(),
-                createCardRequest.getName(),
+        Card card = new Card(createCardRequest.getName(),
                 createCardRequest.getSet(),
-                createCardRequest.isFoil(),
-                createCardRequest.isFullArt(),
                 1,
                 createCardRequest.getCost(),
-                createCardRequest.getColor(),
-                createCardRequest.getType(),
-                createCardRequest.getRarity());
+                createCardRequest.getCardColor(),
+                createCardRequest.getCardType(),
+                createCardRequest.getCardRarity());
     }
 }

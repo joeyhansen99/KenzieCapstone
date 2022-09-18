@@ -30,9 +30,8 @@ public class CardService {
 
         return cardRepository
                 .findById(id)
-                .map(card -> new Card(card.getName(), card.getSet(), card.isFoil(), card.isFullArt(),
-                        card.getQuantity(), card.getCost(), card.getCardColor(), card.getCardType(),
-                        card.getCardRarity()))
+                .map(card -> new Card(card.getName(), card.getSet(), card.getQuantity(), card.getCost(),
+                        card.getCardColor(), card.getCardType(), card.getCardRarity()))
                 .orElse(null);
     }
 
@@ -88,9 +87,8 @@ public class CardService {
         List<Card> cards = new ArrayList<>();
         Iterable<CardRecord> cardRecordIterable = cardRepository.findAll();
         for (CardRecord record : cardRecordIterable) {
-            cards.add(new Card(record.getName(), record.getSet(), record.isFoil(), record.isFullArt(),
-                    record.getQuantity(), record.getCost(), record.getCardColor(), record.getCardType(),
-                    record.getCardRarity()));
+            cards.add(new Card(record.getName(), record.getSet(), record.getQuantity(), record.getCost(),
+                    record.getCardColor(), record.getCardType(), record.getCardRarity()));
         }
         return cards;
     }
