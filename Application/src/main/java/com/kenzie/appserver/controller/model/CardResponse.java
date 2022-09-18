@@ -2,6 +2,9 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.kenzie.appserver.service.model.Card;
+
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
@@ -121,7 +124,7 @@ public class CardResponse {
         this.rarity = rarity;
     }
 
-    public static CardResponse CreateCardResponse(Card card){
+    public static CardResponse createCardResponse(Card card){
 
         CardResponse cardResponse = new CardResponse();
         cardResponse.setId(card.getId());
@@ -131,9 +134,9 @@ public class CardResponse {
         cardResponse.setFullArt(card.isFullArt());
         cardResponse.setQuantity(card.getQuantity());
         cardResponse.setCost(card.getCost());
-        cardResponse.setColor(card.getColor());
-        cardResponse.setType(card.getType());
-        cardResponse.setRarity(card.getRarity());
+        cardResponse.setCardColor(card.getCardColor());
+        cardResponse.setCardType(card.getCardType());
+        cardResponse.setCardRarity(card.getCardRarity());
 
         return cardResponse;
 

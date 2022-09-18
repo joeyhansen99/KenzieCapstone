@@ -1,6 +1,7 @@
 package com.kenzie.appserver.service;
 
 import com.kenzie.appserver.config.CacheStore;
+import com.kenzie.appserver.controller.model.CardUpdateRequest;
 import com.kenzie.appserver.repositories.CardRepository;
 import com.kenzie.appserver.repositories.model.CardRecord;
 import com.kenzie.appserver.service.model.Card;
@@ -55,15 +56,16 @@ public class CardService {
         return card;
     }
 
-    public void updateCard(Card card) {
-        if (cardRepository.existsById(card.getId())) {
+    public void updateCard(CardUpdateRequest updateRequest, String cardId) {
+        if (cardRepository.existsById(cardId)) {
+            Card card = findById(cardId);
             CardRecord cardRecord = new CardRecord();
             cardRecord.setId(card.getId());
             cardRecord.setName(card.getName());
             cardRecord.setSet(card.getSet());
-            cardRecord.setFoil(card.isFoil());
-            cardRecord.setFullArt(card.isFullArt());
-            cardRecord.setQuantity(card.getQuantity());
+            cardRecord.setFoil(updateRequest.isFoil());
+            cardRecord.setFullArt(updateRequest.isFullArt());
+            cardRecord.setQuantity(updateRequest.getQuantity());
             cardRecord.setCost(card.getCost());
             cardRecord.setCardColor(card.getCardColor());
             cardRecord.setCardType(card.getCardType());
