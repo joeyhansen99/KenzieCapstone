@@ -38,8 +38,6 @@ public class CardController {
         Card card = cardService.addNewCard(new Card(
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
-                createCardRequest.isFoil(),
-                createCardRequest.isFullArt(),
                 1,
                 createCardRequest.getCost(),
                 createCardRequest.getCardColor(),

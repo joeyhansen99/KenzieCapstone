@@ -24,13 +24,13 @@ public class Card {
     public Card() {
     }
 
-    public Card(String name, String set, boolean foil, boolean fullArt, int quantity, int cost, CardColor color,
+    public Card(String name, String set, int quantity, int cost, CardColor color,
                 CardType type, CardRarity rarity) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.set = set;
-        this.foil = foil;
-        this.fullArt = fullArt;
+        this.foil = false;
+        this.fullArt = false;
         this.quantity = quantity;
         this.cost = cost;
         this.color = color;
