@@ -24,9 +24,9 @@ public class Card {
     public Card() {
     }
 
-    public Card(String name, String set, int quantity, int cost, CardColor color,
+    public Card(String id, String name, String set, int quantity, int cost, CardColor color,
                 CardType type, CardRarity rarity) {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.name = name;
         this.set = set;
         this.foil = false;
@@ -37,6 +37,7 @@ public class Card {
         this.type = type;
         this.rarity = rarity;
     }
+
     @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
