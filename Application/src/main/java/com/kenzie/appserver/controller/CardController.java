@@ -13,6 +13,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.UUID.randomUUID;
+
 @RestController
 @RequestMapping("/cards")
 public class CardController {
@@ -35,7 +37,7 @@ public class CardController {
 
     @PostMapping
     public ResponseEntity<CardResponse> addCard(@RequestBody CreateCardRequest createCardRequest) throws Exception {
-        Card card = cardService.addNewCard(new Card(
+        Card card = cardService.addNewCard(new Card(randomUUID().toString(),
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
                 1,
