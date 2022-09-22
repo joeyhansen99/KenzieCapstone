@@ -56,9 +56,9 @@ public class CardService {
         return card;
     }
 
-    public void updateCard(CardUpdateRequest updateRequest, String cardId) {
-        if (cardRepository.existsById(cardId)) {
-            Card card = findById(cardId);
+    public void updateCard(CardUpdateRequest updateRequest) {
+        if (cardRepository.existsById(updateRequest.getId())) {
+            Card card = findById(updateRequest.getId());
             CardRecord cardRecord = new CardRecord();
             cardRecord.setId(card.getId());
             cardRecord.setName(card.getName());

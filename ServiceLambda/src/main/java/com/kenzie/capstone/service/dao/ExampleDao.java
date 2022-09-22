@@ -31,7 +31,7 @@ public class ExampleDao {
                             new ExpectedAttributeValue().withExists(false)
                     )));
         } catch (ConditionalCheckFailedException e) {
-            throw new IllegalArgumentException("id has already been used");
+            throw new IllegalArgumentException("ID has already been used");
         }
 
         return exampleData;
@@ -60,7 +60,7 @@ public class ExampleDao {
                             new ExpectedAttributeValue().withExists(false)
                     )));
         } catch (ConditionalCheckFailedException e) {
-            throw new IllegalArgumentException("id already exists");
+            throw new IllegalArgumentException("ID already exists");
         }
 
         return exampleRecord;
