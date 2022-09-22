@@ -75,7 +75,7 @@ public class CardController {
     public ResponseEntity<CardResponse> updateCardById(@RequestBody CardUpdateRequest updateRequest,
                                                        @PathVariable("cardId") String cardId) {
 
-        cardService.updateCard(updateRequest, cardId);
+        cardService.updateCard(updateRequest);
         CardResponse cardResponse = CardResponse.createCardResponse(cardService.findById(cardId));
         return ResponseEntity.ok(cardResponse);
     }

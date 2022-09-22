@@ -10,8 +10,6 @@ public class CardUpdateRequest {
     @NotEmpty
     @JsonProperty("id")
     private String id;
-    @JsonProperty("name")
-    private String name;
     @JsonProperty("foil")
     private boolean foil; // does card have foil finish
     @JsonProperty("fullArt")
@@ -27,7 +25,6 @@ public class CardUpdateRequest {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public boolean isFoil() {
         return foil;
@@ -54,5 +51,3 @@ public class CardUpdateRequest {
     }
 
 }
-
-//quantity full art and foil
