@@ -1,89 +1,202 @@
-:root {
-    /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #131921;
-    --secondary-color: #fff;
-    --error-color: rgba(194, 0, 0, 0.71);
-}
+/*:root {
+     --clr-accent-bg: #000000
+        --clr-accent-drkBlue: #051341
+        --clr-accent-medBlue: #4472C4
+        --clr-accent-lgtBlue: #6DB6ED
+        --clr-accent-graphDrkBlue: #061854
+        --clr-accent-graphMedBlue: #CFD5EA
+        --clr-accent-graphLgtBlue: #E9EBF5
+        --clr-accent-ltrLgt: #000000
+        --clr-accent-ltrDark: #051341
+} */
 
-.background {
-    background-color: #eaeded;
+/* -------- Index Page Styling -------- */
+ #indexPage {
     margin: 0;
-    counter-reset: section;
+    padding: 0;
+    background-image:
+        url('../images/CapstoneBgHome.jpg');
+    background-size: cover;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
 }
 
-.header {
-    /* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+.indexHero {
+    height: 90px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.indexNavMenu {
     display: flex;
+    width: 100%;
+    background-color: #051341;
+    position: relative;
     justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 0 20px;
+    text-align: center;
+    padding: 10px 10px;
+    box-shadow: 2px 2px  #6db6ed;
 }
 
-.header_home {
-    font-size: 36px;
-    line-height: 40px;
-    height: 100px;
-    text-decoration: none;
-    color: var(--secondary-color);
-}
-
-.header_nav_link {
-    margin-left: 20px;
-    vertical-align: top;
-    line-height: 40px;
-}
-
-.about {
-    margin-left: 20px;
-}
-
-.button, button {
-    background: #aed9ff;
-    padding: 3px;
-    border-radius: 3px;
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
+.indexNavLogo {
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 30px;
+    text-shadow: 2.5px 3px #3762af;
+    padding: 5px 15px;
+    margin-right: 20px;
     cursor: pointer;
 }
 
-.button:hover, button:hover {
-    background: #9cc3e4;
-}
-
-.card {
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    margin: 20px;
-    padding: 10px 20px;
-}
-
-.validated-field:invalid {
-    outline: 2px solid var(--error-color);
-}
-.validated-field:focus:invalid {
-    color: var(--error-color);
-}
-
-.card-content {
-    max-width: 500px;
-}
-
-.card-content .form-field {
+.indexNavMenuItems {
     display: flex;
-    flex-direction: column;
+    list-style: none;
+    margin: auto 0;
 }
 
-#concert-list li {
-    margin-bottom: 1rem;
+.indexNavMenuItems li {
+    display: flex;
+    list-style: none;
+    margin: auto 0;
 }
 
-.state {
-    display: none;
+.indexNavMenuItems li a {
+    margin-right: 40px;
+    color: #ddd;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 40px;
+    border-radius: 30px;
+    transition: .3s linear;
 }
 
-.state.active {
-    display: block;
+.indexNavMenuItems li a:hover{
+    background: #6db6ed;
+    color: #051341;
+    transform: scale(1.1);
+}
+
+
+/* -------- Collection Page Styling -------- */
+ #collectionPage {
+    margin: 0;
+    padding: 0;
+    background-image:
+        url('../images/CapstoneBg10.jpg');
+    background-size: cover;
+    background-color: #000000;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+
+.collectionHero {
+    height: 90px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.collectionNavMenu {
+    display: flex;
+    width: 100%;
+    background-color: #051341;
+    position: relative;
+    justify-content: space-between;
+    text-align: center;
+    padding: 10px 10px;
+    box-shadow: 2px 2px  #6db6ed;
+}
+
+.collectionNavLogo {
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 30px;
+    text-shadow: 2.5px 3px #3762af;
+    padding: 5px 15px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.collectionNavSearchBox {
+    flex: 1;
+    margin: auto 0;
+    position: relative;
+}
+
+.collectionNavSearchBox button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: scale(0.9);
+    background: #051341;
+}
+
+.collectionNavSearchBox input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: #6DB6ED;
+    border-radius: 30px;
+    color: #051341;
+    font-size: 16px;
+    text-align: center;
+}
+
+.collectionNavSearchBox i {
+    color: #6db6ed;
+    cursor: pointer;
+}
+
+.collectionNavMenuItems {
+    display: flex;
+    list-style: none;
+    margin: auto 0;
+}
+
+.collectionNavMenuItems li {
+    display: flex;
+    list-style: none;
+    margin: auto 0;
+}
+
+.collectionNavMenuItems li a {
+    margin-right: 50px;
+    color: #ddd;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 40px;
+    border-radius: 30px;
+    transition: .3s linear;
+}
+
+.collectionNavMenuItems li a:hover{
+    background: #6db6ed;
+    color: #051341;
+    transform: scale(1.1);
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
