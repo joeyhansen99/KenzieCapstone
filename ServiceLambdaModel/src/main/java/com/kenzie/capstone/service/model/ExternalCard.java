@@ -8,23 +8,24 @@ import java.util.Objects;
 public class ExternalCard {
 
     private String name;
-    private String set;
     private int cmc;
     private List<String> colors;
     private List<String> types;
     private String rarity;
+    private String set;
     private String imageUrl;
 
     public ExternalCard() {
     }
 
-    public ExternalCard(String name, String set, int cmc, List<String> colors, List<String> types, String rarity, String imageUrl) {
+    public ExternalCard(String name, int cmc, List<String> colors, List<String> types,
+                        String rarity, String set, String imageUrl) {
         this.name = name;
-        this.set = set;
         this.cmc = cmc;
         this.colors = colors;
         this.types = types;
         this.rarity = rarity;
+        this.set = set;
         this.imageUrl = imageUrl;
     }
 
@@ -35,15 +36,6 @@ public class ExternalCard {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @JsonProperty("set")
-    public String getSet() {
-        return set;
-    }
-
-    public void setSet(String set) {
-        this.set = set;
     }
 
     @JsonProperty("cmc")
@@ -80,6 +72,15 @@ public class ExternalCard {
 
     public void setRarity(String rarity) {
         this.rarity = rarity;
+    }
+
+    @JsonProperty("set")
+    public String getSet() {
+        return set;
+    }
+
+    public void setSet(String set) {
+        this.set = set;
     }
 
     @JsonProperty("imageUrl")
