@@ -130,4 +130,5 @@ public class CardRecord {
     public int hashCode() {
         return Objects.hashCode(id, name, set, foil, fullArt, quantity, cost, color, type, rarity);
     }
+
 }
