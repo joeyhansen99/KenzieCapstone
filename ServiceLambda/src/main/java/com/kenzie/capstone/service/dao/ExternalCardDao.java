@@ -3,7 +3,6 @@ package com.kenzie.capstone.service.dao;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
