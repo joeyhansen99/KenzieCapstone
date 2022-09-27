@@ -1,8 +1,5 @@
 package com.kenzie.capstone.service;
 
-import com.kenzie.capstone.service.dao.ExampleDao;
-import com.kenzie.capstone.service.model.ExampleData;
-import com.kenzie.capstone.service.model.ExampleRecord;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
