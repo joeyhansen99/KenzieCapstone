@@ -20,8 +20,7 @@ public class ExternalCardDao {
     public String sendSearchRequest(String searchTerm) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .header("name",searchTerm)
-                .uri(URI.create(EXTERNAL_API_ADDRESS))
+                .uri(URI.create(EXTERNAL_API_ADDRESS + "?name=" + searchTerm))
                 .build();
 
         return httpClient.send(request,HttpResponse.BodyHandlers.ofString()).body();
