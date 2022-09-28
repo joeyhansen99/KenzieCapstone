@@ -1,41 +1,32 @@
 package com.kenzie.capstone.service.client;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kenzie.capstone.service.model.ExampleData;
+import com.kenzie.capstone.service.model.ExternalCard;
+
+import java.util.List;
 
 
 public class LambdaServiceClient {
 
-    private static final String GET_EXAMPLE_ENDPOINT = "example/{id}";
-    private static final String SET_EXAMPLE_ENDPOINT = "example";
+    private static final String GET_CARD_ENDPOINT = "cards/{cardId}";
 
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
 
     public LambdaServiceClient() {
         this.mapper = new ObjectMapper();
     }
 
-    public ExampleData getExampleData(String id) {
+    public List<ExternalCard> getCardData(String name) {
         EndpointUtility endpointUtility = new EndpointUtility();
-        String response = endpointUtility.getEndpoint(GET_EXAMPLE_ENDPOINT.replace("{id}", id));
-        ExampleData exampleData;
+        String response = endpointUtility.getEndpoint(GET_CARD_ENDPOINT.replace("{cardId}", name));
+        List<ExternalCard> list;
         try {
-            exampleData = mapper.readValue(response, ExampleData.class);
+            list = mapper.readValue(response, new TypeReference<>() {});
         } catch (Exception e) {
             throw new ApiGatewayException("Unable to map deserialize JSON: " + e);
         }
-        return exampleData;
+        return list;
     }
 
-    public ExampleData setExampleData(String data) {
-        EndpointUtility endpointUtility = new EndpointUtility();
-        String response = endpointUtility.postEndpoint(SET_EXAMPLE_ENDPOINT, data);
-        ExampleData exampleData;
-        try {
-            exampleData = mapper.readValue(response, ExampleData.class);
-        } catch (Exception e) {
-            throw new ApiGatewayException("Unable to map deserialize JSON: " + e);
-        }
-        return exampleData;
-    }
 }

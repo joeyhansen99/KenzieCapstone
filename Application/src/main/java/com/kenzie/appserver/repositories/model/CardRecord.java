@@ -5,8 +5,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.google.common.base.Objects;
-@DynamoDBTable(tableName = "Example")
+import com.kenzie.appserver.service.model.CardColor;
+import com.kenzie.appserver.service.model.CardRarity;
+import com.kenzie.appserver.service.model.CardType;
+
+@DynamoDBTable(tableName = "cards")
 public class CardRecord {
+
     private String id; // unique id number
     private String name; // name of card
     private String set; // card set
@@ -14,48 +19,11 @@ public class CardRecord {
     private boolean fullArt; // does card display full art
     private int quantity; // number of this card in collection
     private int cost; // combined mana cost of card
-    private CardRecord.Color color; // color of card
-    private CardRecord.Type type; // type of card
-    private CardRecord.Rarity rarity; // rarity of card
-    enum Color {
-        BLACK,
-        BLUE,
-        GREEN,
-        RED,
-        WHITE,
-        BLACK_BLUE,
-        BLACK_GREEN,
-        BLACK_RED,
-        BLACK_WHITE,
-        BLUE_GREEN,
-        BLUE_RED,
-        BLUE_WHITE,
-        GREEN_RED,
-        GREEN_WHITE,
-        RED_WHITE,
-        THREE_COLOR,
-        COLORLESS
-    }
-    enum Type {
-        ARTIFACT,
-        CONSPIRACY,
-        CREATURE,
-        ENCHANTMENT,
-        INSTANT,
-        LAND,
-        PHENOMENON,
-        PLANE,
-        PLANESWALKER,
-        SCHEME,
-        SORCERY,
-        TRIBAL,
-        VANGUARD
-    }
-    enum Rarity {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        MYTHIC_RARE
+    private CardColor color; // color of card
+    private CardType type; // type of card
+    private CardRarity rarity; // rarity of card
+
+    public CardRecord() {
     }
 
     @DynamoDBHashKey(attributeName = "id")
@@ -94,17 +62,17 @@ public class CardRecord {
     }
 
     @DynamoDBAttribute(attributeName = "color")
-    public Color getColor() {
+    public CardColor getCardColor() {
         return color;
     }
 
     @DynamoDBAttribute(attributeName = "type")
-    public Type getType() {
+    public CardType getCardType() {
         return type;
     }
 
     @DynamoDBAttribute(attributeName = "rarity")
-    public Rarity getRarity() {
+    public CardRarity getCardRarity() {
         return rarity;
     }
 
@@ -136,15 +104,15 @@ public class CardRecord {
         this.cost = cost;
     }
 
-    public void setColor(Color color) {
+    public void setCardColor(CardColor color) {
         this.color = color;
     }
 
-    public void setType(Type type) {
+    public void setCardType(CardType type) {
         this.type = type;
     }
 
-    public void setRarity(Rarity rarity) {
+    public void setCardRarity(CardRarity rarity) {
         this.rarity = rarity;
     }
 
@@ -153,7 +121,9 @@ public class CardRecord {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CardRecord that = (CardRecord) o;
-        return foil == that.foil && fullArt == that.fullArt && quantity == that.quantity && cost == that.cost && Objects.equal(id, that.id) && Objects.equal(name, that.name) && Objects.equal(set, that.set) && color == that.color && type == that.type && rarity == that.rarity;
+        return foil == that.foil && fullArt == that.fullArt && quantity == that.quantity && cost == that.cost &&
+                Objects.equal(id, that.id) && Objects.equal(name, that.name) && Objects.equal(set, that.set) &&
+                color == that.color && type == that.type && rarity == that.rarity;
     }
 
     @Override

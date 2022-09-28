@@ -1,36 +1,33 @@
 package com.kenzie.capstone.service.dependency;
 
 
-import com.kenzie.capstone.service.dao.ExampleDao;
-import com.kenzie.capstone.service.util.DynamoDbClientProvider;
+import com.kenzie.capstone.service.dao.ExternalCardDao;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import dagger.Module;
 import dagger.Provides;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+import java.net.http.HttpClient;
 
-/**
- * Provides DynamoDBMapper instance to DAO classes.
- */
 @Module
 public class DaoModule {
 
     @Singleton
     @Provides
-    @Named("DynamoDBMapper")
-    public DynamoDBMapper provideDynamoDBMapper() {
-        return new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+    @Named("HttpClient")
+    public HttpClient provideHttpClient() {
+        return HttpClient.newHttpClient();
     }
+
 
     @Singleton
     @Provides
-    @Named("ExampleDao")
+    @Named("ExternalCardDao")
     @Inject
-    public ExampleDao provideExampleDao(@Named("DynamoDBMapper") DynamoDBMapper mapper) {
-        return new ExampleDao(mapper);
+    public ExternalCardDao provideExternalCardDao(@Named("HttpClient") HttpClient httpClient) {
+        return new ExternalCardDao(httpClient);
     }
 
 }

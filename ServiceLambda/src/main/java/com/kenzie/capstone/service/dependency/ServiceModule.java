@@ -1,8 +1,8 @@
 package com.kenzie.capstone.service.dependency;
 
-import com.kenzie.capstone.service.LambdaService;
-import com.kenzie.capstone.service.dao.ExampleDao;
+import com.kenzie.capstone.service.ExternalCardService;
 
+import com.kenzie.capstone.service.dao.ExternalCardDao;
 import dagger.Module;
 import dagger.Provides;
 
@@ -18,8 +18,8 @@ public class ServiceModule {
     @Singleton
     @Provides
     @Inject
-    public LambdaService provideLambdaService(@Named("ExampleDao") ExampleDao exampleDao) {
-        return new LambdaService(exampleDao);
+    public ExternalCardService provideExternalCardService(@Named("ExternalCardDao") ExternalCardDao externalCardDao) {
+        return new ExternalCardService(externalCardDao);
     }
 }
 

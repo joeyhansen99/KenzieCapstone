@@ -17,69 +17,27 @@ public class Card {
     private boolean fullArt; // does card display full art
     private int quantity; // number of this card in collection
     private int cost; // combined mana cost of card
-    public Color color; // color of card
-    public Type type; // type of card
-    public Rarity rarity; // rarity of card
-
-    public enum Color {
-        BLACK,
-        BLUE,
-        GREEN,
-        RED,
-        WHITE,
-        BLACK_BLUE,
-        BLACK_GREEN,
-        BLACK_RED,
-        BLACK_WHITE,
-        BLUE_GREEN,
-        BLUE_RED,
-        BLUE_WHITE,
-        GREEN_RED,
-        GREEN_WHITE,
-        RED_WHITE,
-        THREE_COLOR,
-        COLORLESS
-    }
-
-    public enum Type {
-        ARTIFACT,
-        CONSPIRACY,
-        CREATURE,
-        ENCHANTMENT,
-        INSTANT,
-        LAND,
-        PHENOMENON,
-        PLANE,
-        PLANESWALKER,
-        SCHEME,
-        SORCERY,
-        TRIBAL,
-        VANGUARD
-    }
-
-    public enum Rarity {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        MYTHIC_RARE
-    }
+    private CardColor color; // color of card
+    private CardType type; // type of card
+    private CardRarity rarity; // rarity of card
 
     public Card() {
     }
 
-    public Card(String name, String set, boolean foil, boolean fullArt, int quantity, int cost, Card.Color color,
-                Card.Type type, Card.Rarity rarity) {
-        this.id = UUID.randomUUID().toString();
+    public Card(String id, String name, String set, int quantity, int cost, CardColor color,
+                CardType type, CardRarity rarity) {
+        this.id = id;
         this.name = name;
         this.set = set;
-        this.foil = foil;
-        this.fullArt = fullArt;
+        this.foil = false;
+        this.fullArt = false;
         this.quantity = quantity;
         this.cost = cost;
         this.color = color;
         this.type = type;
         this.rarity = rarity;
     }
+
     @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
@@ -116,17 +74,17 @@ public class Card {
     }
 
     @DynamoDBAttribute(attributeName = "color")
-    public Color getColor() {
+    public CardColor getCardColor() {
         return color;
     }
 
     @DynamoDBAttribute(attributeName = "type")
-    public Type getType() {
+    public CardType getCardType() {
         return type;
     }
 
     @DynamoDBAttribute(attributeName = "rarity")
-    public Rarity getRarity() {
+    public CardRarity getCardRarity() {
         return rarity;
     }
 
