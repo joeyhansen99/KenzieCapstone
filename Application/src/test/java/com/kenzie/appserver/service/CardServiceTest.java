@@ -8,6 +8,7 @@ import com.kenzie.appserver.service.model.Card;
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
+import com.kenzie.capstone.service.client.LambdaServiceClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,12 +26,14 @@ public class CardServiceTest {
     private CardRepository cardRepository;
     private CardService cardService;
     private CacheStore cacheStore;
+    private LambdaServiceClient lambdaServiceClient;
 
     @BeforeEach
     void setup() {
         cardRepository = mock(CardRepository.class);
         cacheStore = mock(CacheStore.class);
-        cardService = new CardService(cardRepository, cacheStore);
+        lambdaServiceClient = mock(LambdaServiceClient.class);
+        cardService = new CardService(cardRepository, cacheStore, lambdaServiceClient);
     }
 
     @Test
@@ -171,7 +174,7 @@ public class CardServiceTest {
 
         //WHEN
         when(cardRepository.existsById(card.getId())).thenReturn(true);
-        cardService.updateCard(cardUpdateRequest, card.getId());
+        cardService.updateCard(cardUpdateRequest);
 
         //THEN
         verify(cacheStore).evict(card.getId());

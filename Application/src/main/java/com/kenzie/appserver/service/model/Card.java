@@ -1,13 +1,5 @@
 package com.kenzie.appserver.service.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBRangeKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-
-import java.util.UUID;
-
-@DynamoDBTable(tableName = "cards")
 public class Card {
 
     private String id; // unique id number
@@ -38,52 +30,42 @@ public class Card {
         this.rarity = rarity;
     }
 
-    @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
     }
 
-    @DynamoDBAttribute(attributeName = "quantity")
     public int getQuantity() {
         return quantity;
     }
 
-    @DynamoDBRangeKey(attributeName = "name")
     public String getName() {
         return name;
     }
 
-    @DynamoDBAttribute(attributeName = "set")
     public String getSet() {
         return set;
     }
 
-    @DynamoDBAttribute(attributeName = "foil")
     public boolean isFoil() {
         return foil;
     }
 
-    @DynamoDBAttribute(attributeName = "fullArt")
     public boolean isFullArt() {
         return fullArt;
     }
 
-    @DynamoDBAttribute(attributeName = "cost")
     public int getCost() {
         return cost;
     }
 
-    @DynamoDBAttribute(attributeName = "color")
     public CardColor getCardColor() {
         return color;
     }
 
-    @DynamoDBAttribute(attributeName = "type")
     public CardType getCardType() {
         return type;
     }
 
-    @DynamoDBAttribute(attributeName = "rarity")
     public CardRarity getCardRarity() {
         return rarity;
     }

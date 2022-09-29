@@ -106,8 +106,12 @@ public class ExternalCard {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ExternalCard that = (ExternalCard) o;
         return cmc == that.cmc &&
                 Objects.equals(name, that.name) &&
