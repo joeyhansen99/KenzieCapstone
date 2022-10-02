@@ -38,7 +38,7 @@ public class CardController {
         Card card = cardService.addNewCard(new Card(randomUUID().toString(),
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
-                1,
+                createCardRequest.getQuantity(),
                 createCardRequest.getCost(),
                 createCardRequest.getCardColor(),
                 createCardRequest.getCardType(),
