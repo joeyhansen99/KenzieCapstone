@@ -1,6 +1,5 @@
 package com.kenzie.appserver.controller;
 
-
 import com.kenzie.appserver.controller.model.CardResponse;
 import com.kenzie.appserver.controller.model.CardUpdateRequest;
 import com.kenzie.appserver.controller.model.CreateCardRequest;
@@ -8,7 +7,6 @@ import com.kenzie.appserver.service.CardService;
 import com.kenzie.appserver.service.model.Card;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class CardController {
         Card card = cardService.addNewCard(new Card(randomUUID().toString(),
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
-                1,
+                createCardRequest.getQuantity(),
                 createCardRequest.getCost(),
                 createCardRequest.getCardColor(),
                 createCardRequest.getCardType(),

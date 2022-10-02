@@ -2,9 +2,7 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.kenzie.appserver.service.model.Card;
-
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
@@ -40,9 +38,6 @@ public class CardResponse {
 
     @JsonProperty("rarity")
     public CardRarity rarity; // rarity of card
-
-
-
 
     public String getId() {
         return id;

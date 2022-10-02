@@ -17,7 +17,6 @@ public class CardUpdateRequest {
     @JsonProperty("quantity")
     private int quantity; // number of this card in collection
 
-
     public String getId() {
         return id;
     }
@@ -51,3 +50,5 @@ public class CardUpdateRequest {
     }
 
 }
+
+//quantity full art and foil
