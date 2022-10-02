@@ -3,7 +3,6 @@ package com.kenzie.capstone.service.dao;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -21,8 +20,7 @@ public class ExternalCardDao {
     public String sendSearchRequest(String searchTerm) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .header("name",searchTerm)
-                .uri(URI.create(EXTERNAL_API_ADDRESS))
+                .uri(URI.create(EXTERNAL_API_ADDRESS + "?name=" + searchTerm))
                 .build();
 
         return httpClient.send(request,HttpResponse.BodyHandlers.ofString()).body();

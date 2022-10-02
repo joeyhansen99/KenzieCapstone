@@ -1,28 +1,35 @@
 package com.kenzie.capstone.service.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
 import java.util.Objects;
 
 public class ExternalCard {
 
     private String name;
-    private String set;
     private int cmc;
-    private String colors;
-    private String types;
+    private List<String> colors;
+    private List<String> types;
     private String rarity;
+    private String set;
+    private String imageUrl;
 
     public ExternalCard() {
     }
 
-    public ExternalCard(String name, String set, int cmc, String colors, String types, String rarity) {
+    public ExternalCard(String name, int cmc, List<String> colors, List<String> types,
+                        String rarity, String set, String imageUrl) {
         this.name = name;
-        this.set = set;
         this.cmc = cmc;
         this.colors = colors;
         this.types = types;
         this.rarity = rarity;
+        this.set = set;
+        this.imageUrl = imageUrl;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -31,14 +38,7 @@ public class ExternalCard {
         this.name = name;
     }
 
-    public String getSet() {
-        return set;
-    }
-
-    public void setSet(String set) {
-        this.set = set;
-    }
-
+    @JsonProperty("cmc")
     public int getCmc() {
         return cmc;
     }
@@ -47,28 +47,49 @@ public class ExternalCard {
         this.cmc = cmc;
     }
 
-    public String getColors() {
+    @JsonProperty("colors")
+    public List<String> getColors() {
         return colors;
     }
 
-    public void setColors(String colors) {
+    public void setColors(List<String> colors) {
         this.colors = colors;
     }
 
-    public String getTypes() {
+    @JsonProperty("types")
+    public List<String> getTypes() {
         return types;
     }
 
-    public void setTypes(String types) {
+    public void setTypes(List<String> types) {
         this.types = types;
     }
 
+    @JsonProperty("rarity")
     public String getRarity() {
         return rarity;
     }
 
     public void setRarity(String rarity) {
         this.rarity = rarity;
+    }
+
+    @JsonProperty("set")
+    public String getSet() {
+        return set;
+    }
+
+    public void setSet(String set) {
+        this.set = set;
+    }
+
+    @JsonProperty("imageUrl")
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -85,8 +106,12 @@ public class ExternalCard {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ExternalCard that = (ExternalCard) o;
         return cmc == that.cmc &&
                 Objects.equals(name, that.name) &&

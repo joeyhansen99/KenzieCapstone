@@ -5,6 +5,8 @@ import com.kenzie.appserver.controller.model.CardUpdateRequest;
 import com.kenzie.appserver.repositories.CardRepository;
 import com.kenzie.appserver.repositories.model.CardRecord;
 import com.kenzie.appserver.service.model.Card;
+import com.kenzie.capstone.service.client.LambdaServiceClient;
+import com.kenzie.capstone.service.model.ExternalCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,18 +19,16 @@ public class CardService {
     @Autowired
     private final CardRepository cardRepository;
     private final CacheStore cache;
+    private final LambdaServiceClient lambdaServiceClient;
 
     @Autowired
-    public CardService(CardRepository cardRepository, CacheStore cache) {
+    public CardService(CardRepository cardRepository, CacheStore cache, LambdaServiceClient lambdaServiceClient) {
         this.cardRepository = cardRepository;
         this.cache = cache;
+        this.lambdaServiceClient = lambdaServiceClient;
     }
 
     public Card findById(String id) {
-
-//        example getting data from the lambda
-//        CardData dataFromLambda = lambdaServiceClient.getCardData(id);
-
         return cardRepository
                 .findById(id)
                 .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.getQuantity(), card.getCost(),
@@ -36,11 +36,8 @@ public class CardService {
                 .orElse(null);
     }
 
+    // add a new card when user picks it from a provided list after name search
     public Card addNewCard(Card card) {
-
-//        example sending data to the lambda
-//        CardData dataFromLambda = lambdaServiceClient.setCardData(card);
-
         CardRecord cardRecord = new CardRecord();
         cardRecord.setId(card.getId());
         cardRecord.setName(card.getName());
@@ -54,6 +51,11 @@ public class CardService {
         cardRecord.setCardRarity(card.getCardRarity());
         cardRepository.save(cardRecord);
         return card;
+    }
+
+    // returns a list of cards from MTG API based on search parameter (name)
+    public List<ExternalCard> returnCardList(String name) {
+        return lambdaServiceClient.getCardData(name);
     }
 
     public void updateCard(CardUpdateRequest updateRequest) {
@@ -76,7 +78,6 @@ public class CardService {
     }
 
     public void deleteCard(String id) {
-        // TODO decide if we are actually deleting information from the repository or if we should mark it as deleted
         try {
             cardRepository.deleteById(id);
             cache.evict(id);

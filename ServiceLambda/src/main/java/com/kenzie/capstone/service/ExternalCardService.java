@@ -7,7 +7,6 @@ import com.kenzie.capstone.service.dao.ExternalCardDao;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 
@@ -20,8 +19,8 @@ public class ExternalCardService {
         this.cardDao = cardDao;
     }
 
-    public List<ExternalCard> getCardSearchResults(String searchTerm) throws URISyntaxException, IOException, InterruptedException {
+    public List<ExternalCard> getCardSearchResults(String searchTerm) throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(cardDao.sendSearchRequest(searchTerm), new TypeReference<List<ExternalCard>>() {});
+        return mapper.readValue(cardDao.sendSearchRequest(searchTerm), new TypeReference<>() {});
     }
 }

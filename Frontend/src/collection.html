@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
-        <script type="text/javascript" src=indexPage.js"></script>
+        <script type="text/javascript" src="indexPage.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" charset="utf-8"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
@@ -18,7 +18,7 @@
                 </div>
                 <div class="collectionNavSearchBox">
                     <form action="">
-                        <input type="text" name="search" placeholder="Search in Collection">
+                        <input type="search" name="search" placeholder="Search in Collection">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
@@ -34,6 +34,20 @@
     </body>
 
     <main>
-        <div class="container"></div>
+        <div class="container" id="table_Display">
+            <table id="main_table">
+                <tr>
+                    <th>Quantity</th>
+                    <th>Name</th>
+                    <th>Set</th>
+                    <th>CMC</th>
+                    <th>Colors</th>
+                    <th>Types</th>
+                    <th>Rarity</th>
+                    <th>Foil</th>
+                    <th>Full Art</th>
+                </tr>
+            </table>
+        </div>
     </main>
 </html>

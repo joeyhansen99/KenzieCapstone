@@ -19,6 +19,16 @@ export default class CardClient extends BaseClass {
         }
     }
 
+    //This is the main method which will get all cards from the collection
+    async getAllCards(errorCallback) {
+        try {
+            const response = await this.client.get(`/cards`);
+            return response.data;
+        } catch (error) {
+            this.handleError('getAllCards', error, errorCallback);
+        }
+    }
+
     //async means this method doesnt execute until called
     async createCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
         try {
@@ -44,27 +54,17 @@ export default class CardClient extends BaseClass {
     }
 
 
-//    //standing by for changes. Jet
-//    async updateCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
-//            try {
-//                const response = await this.client.put(`/cards`,
-//                {
-//                    "id": id,
-//                    "name": name,
-//                    "set": set,
-//                    "foil": foil,
-//                    "fullArt": fullArt,
-//                    "quantity": quantity,
-//                    "cost": cost,
-//                    "color": color,
-//                    "type": type,
-//                    "rarity": rarity,
-//                });
-//                return response.data;
-//            } catch (error) {
-//                this.handleError('createCard', error, errorCallback);
-//            }
-//        }
+    async updateCard(id, foil, fullArt, quantity) {
+        try {
+            const response = await this.client.patch(`/cards/${id}`, {
+                foil: `${foil}`,
+                fullArt: `${fullArt}`,
+                quantity: `${quantity}`});
+            return response.data;
+        } catch (error) {
+            this.handleError('updateCard', error, errorCallback);
+        }
+    }
 
 
     async getCard(id, errorCallback) {
