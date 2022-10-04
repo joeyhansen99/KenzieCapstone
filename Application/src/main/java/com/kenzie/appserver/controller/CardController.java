@@ -48,7 +48,7 @@ public class CardController {
         return ResponseEntity.created(URI.create("/cards/" + cardResponse.getId())).body(cardResponse);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<CardResponse>> getAllCards() {
         List<Card> cards = cardService.findAllCards();
 
@@ -84,4 +84,5 @@ public class CardController {
         List<ExternalCard> externalCardList = cardService.returnCardList(searchTerm);
         return ResponseEntity.ok(CardResponse.externalToResponse(externalCardList));
     }
+
 }
