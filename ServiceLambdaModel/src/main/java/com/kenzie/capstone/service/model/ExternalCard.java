@@ -7,12 +7,25 @@ import java.util.Objects;
 
 public class ExternalCard {
 
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("cmc")
     private int cmc;
+
+    @JsonProperty("colors")
     private List<String> colors;
+
+    @JsonProperty("types")
     private List<String> types;
+
+    @JsonProperty("rarity")
     private String rarity;
+
+    @JsonProperty("set")
     private String set;
+
+    @JsonProperty("imageUrl")
     private String imageUrl;
 
     public ExternalCard() {
@@ -29,7 +42,6 @@ public class ExternalCard {
         this.imageUrl = imageUrl;
     }
 
-    @JsonProperty("name")
     public String getName() {
         return name;
     }
@@ -38,7 +50,6 @@ public class ExternalCard {
         this.name = name;
     }
 
-    @JsonProperty("cmc")
     public int getCmc() {
         return cmc;
     }
@@ -47,7 +58,6 @@ public class ExternalCard {
         this.cmc = cmc;
     }
 
-    @JsonProperty("colors")
     public List<String> getColors() {
         return colors;
     }
@@ -56,7 +66,6 @@ public class ExternalCard {
         this.colors = colors;
     }
 
-    @JsonProperty("types")
     public List<String> getTypes() {
         return types;
     }
@@ -65,7 +74,6 @@ public class ExternalCard {
         this.types = types;
     }
 
-    @JsonProperty("rarity")
     public String getRarity() {
         return rarity;
     }
@@ -74,7 +82,6 @@ public class ExternalCard {
         this.rarity = rarity;
     }
 
-    @JsonProperty("set")
     public String getSet() {
         return set;
     }
@@ -83,7 +90,6 @@ public class ExternalCard {
         this.set = set;
     }
 
-    @JsonProperty("imageUrl")
     public String getImageUrl() {
         return this.imageUrl;
     }

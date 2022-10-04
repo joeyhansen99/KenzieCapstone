@@ -8,6 +8,8 @@ import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
 
+import java.util.List;
+
 @DynamoDBTable(tableName = "cards")
 public class CardRecord {
 
@@ -18,8 +20,8 @@ public class CardRecord {
     private boolean fullArt; // does card display full art
     private int quantity; // number of this card in collection
     private int cost; // combined mana cost of card
-    private CardColor color; // color of card
-    private CardType type; // type of card
+    private List<CardColor> color; // color of card
+    private List<CardType> type; // type of card
     private CardRarity rarity; // rarity of card
 
     @DynamoDBHashKey(attributeName = "id")
@@ -58,12 +60,12 @@ public class CardRecord {
     }
 
     @DynamoDBAttribute(attributeName = "color")
-    public CardColor getCardColor() {
+    public List<CardColor> getCardColor() {
         return color;
     }
 
     @DynamoDBAttribute(attributeName = "type")
-    public CardType getCardType() {
+    public List<CardType> getCardType() {
         return type;
     }
 
@@ -100,11 +102,11 @@ public class CardRecord {
         this.cost = cost;
     }
 
-    public void setCardColor(CardColor color) {
+    public void setCardColor(List<CardColor> color) {
         this.color = color;
     }
 
-    public void setCardType(CardType type) {
+    public void setCardType(List<CardType> type) {
         this.type = type;
     }
 
@@ -126,4 +128,5 @@ public class CardRecord {
     public int hashCode() {
         return Objects.hashCode(id, name, set, foil, fullArt, quantity, cost, color, type, rarity);
     }
+
 }
