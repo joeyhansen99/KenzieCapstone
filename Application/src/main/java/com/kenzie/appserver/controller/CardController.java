@@ -79,6 +79,4 @@ public class CardController {
         CardResponse cardResponse = CardResponse.createCardResponse(cardService.findById(cardId));
         return ResponseEntity.ok(cardResponse);
     }
-
-
 }

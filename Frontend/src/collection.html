@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="indexPage.js"></script>
+        <meta charset="UTF-8" />
+        <script type="text/html" src="collectionPage.js"></script>
+<!--        <script type="text/javascript" src="collectionPage.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" charset="utf-8"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" charset="utf-8"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
     </head>
 
@@ -18,36 +21,640 @@
                 </div>
                 <div class="collectionNavSearchBox">
                     <form action="">
-                        <input type="search" name="search" placeholder="Search in Collection">
-                        <button type="submit"><i class="fas fa-search"></i></button>
+                        <input type="text" id="collectionSearchInput" onkeyup="searchCollection()"
+                               placeholder="Search in Collection by name">
+                        <button id="collectionSearchButton" type="submit"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
                 <ul class="collectionNavMenuItems">
                     <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fas fa-plus-square"></i> Add Card</a></li>
+                    <li><a href="collection.html"><i class="fas fa-archive"></i> Collection</a></li>
+                    <li><a href="addcard.html"><i class="fas fa-plus-square"></i> Add Card</a></li>
                     <li><a href="#"><i class="fas fa-edit"></i> Edit</a></li>
                     <li><a href="#"><i class="fas fa-trash"></i> Delete</a></li>
 <!--                    <li><a href="#"><i class="fas fa-sign-out"></i> Log-Out</a></li>-->
                 </ul>
             </nav>
         </div>
-    </body>
+        <!-- Collection Table -->
+        <div class="mainCollection-OuterWrapper">
+            <div class="mainCollection-TableWrapper">
+                <table id="collectionTable" class="mainCollection table-sortable">
+                    <thead>
+                        <tr id="collectionTableHeader">
+                            <th>Set</th>
+                            <th>Name</th>
+                            <th>CMC</th>
+                            <th>Type</th>
+                            <th>Color</th>
+                            <th>Rarity</th>
+                            <th>Foil</th>
+                            <th>Full Art</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+<!--                <tbody id="collectionData"></tbody>-->
+                    <tbody class="testCollectionData">
+                        <tr>
+                            <td>MH2</td>
+                            <td>Abundant Harvest</td>
+                            <td>1</td>
+                            <td>SORCERY</td>
+                            <td>GREEN</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Abzan Falconer</td>
+                            <td>3</td>
+                            <td>CREATURE</td>
+                            <td>WHITE</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Ageless Guardian</td>
+                            <td>2</td>
+                            <td>CREATURE</td>
+                            <td>WHITE</td>
+                            <td>COMMON</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>C20</td>
+                            <td>Ajani Unyielding</td>
+                            <td>6</td>
+                            <td>PLANESWALKER</td>
+                            <td>GREEN_WHITE</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Alrund's Epiphany</td>
+                            <td>7</td>
+                            <td>SORCERY</td>
+                            <td>BLUE</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>AFC</td>
+                            <td>Arcane Endeavor</td>
+                            <td>7</td>
+                            <td>SORCERY</td>
+                            <td>BLUE</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>true</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>WAR</td>
+                            <td>Arlinn, Voice of the Pack</td>
+                            <td>6</td>
+                            <td>PLANESWALKER</td>
+                            <td>GREEN</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>MH2</td>
+                            <td>Blacksmith's Skill</td>
+                            <td>1</td>
+                            <td>INSTANT</td>
+                            <td>WHITE</td>
+                            <td>COMMON</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Capture Sphere</td>
+                            <td>4</td>
+                            <td>ENCHANTMENT</td>
+                            <td>BLUE</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>C20</td>
+                            <td>Chandra, Flamecaller</td>
+                            <td>6</td>
+                            <td>PLANESWALKER</td>
+                            <td>RED</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Combat Professor</td>
+                            <td>4</td>
+                            <td>CREATURE</td>
+                            <td>WHITE</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Confront the Past</td>
+                            <td>1</td>
+                            <td>SORCERY</td>
+                            <td>BLACK</td>
+                            <td>RARE</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>10E</td>
+                            <td>Dragon's Claw</td>
+                            <td>2</td>
+                            <td>ARTIFACT</td>
+                            <td>COLORLESS</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NCC</td>
+                            <td>Duelist's Heritage</td>
+                            <td>3</td>
+                            <td>ENCHANTMENT</td>
+                            <td>WHITE</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Environmental Sciences</td>
+                            <td>2</td>
+                            <td>SORCERY</td>
+                            <td>COLORLESS</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NCC</td>
+                            <td>Fell the Mighty</td>
+                            <td>5</td>
+                            <td>SORCERY</td>
+                            <td>WHITE</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Firja, Judge of Valor</td>
+                            <td>5</td>
+                            <td>CREATURE</td>
+                            <td>BLACK_WHITE</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Forging the Tyrite Sword</td>
+                            <td>3</td>
+                            <td>ENCHANTMENT</td>
+                            <td>RED_WHITE</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Flunk</td>
+                            <td>2</td>
+                            <td>INSTANT</td>
+                            <td>BLACK</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Go Blank</td>
+                            <td>3</td>
+                            <td>SORCERY</td>
+                            <td>BLACK</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Goldvein Pick</td>
+                            <td>2</td>
+                            <td>ARTIFACT</td>
+                            <td>COLORLESS</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Introduction to Prophecy</td>
+                            <td>3</td>
+                            <td>SORCERY</td>
+                            <td>COLORLESS</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Jodah, Archmage Eternal</td>
+                            <td>4</td>
+                            <td>CREATURE</td>
+                            <td>THREE_COLOR</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>WAR</td>
+                            <td>Kaya, Bane of the Dead</td>
+                            <td>6</td>
+                            <td>PLANESWALKER</td>
+                            <td>BLACK_WHITE</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>King Herald's Revenge</td>
+                            <td>3</td>
+                            <td>SORCERY</td>
+                            <td>GREEN</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NCC</td>
+                            <td>Kitt Kanto, Mayhem Diva</td>
+                            <td>4</td>
+                            <td>CREATURE</td>
+                            <td>THREE_COLOR</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Knightly Valor</td>
+                            <td>5</td>
+                            <td>ENCHANTMENT</td>
+                            <td>WHITE</td>
+                            <td>COMMON</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NCC</td>
+                            <td>Life of the Party</td>
+                            <td>4</td>
+                            <td>CREATURE</td>
+                            <td>RED</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>MH2</td>
+                            <td>Lightning Spear</td>
+                            <td>2</td>
+                            <td>ARTIFACT</td>
+                            <td>RED</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Monastery Swiftspear</td>
+                            <td>1</td>
+                            <td>CREATURE</td>
+                            <td>RED</td>
+                            <td>COMMON</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Niko Aris</td>
+                            <td>3</td>
+                            <td>PLANESWALKER</td>
+                            <td>BLUE_WHITE</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NEC</td>
+                            <td>Ordeal of Nylea</td>
+                            <td>2</td>
+                            <td>ENCHANTMENT</td>
+                            <td>GREEN</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Organic Extinction</td>
+                            <td>10</td>
+                            <td>SORCERY</td>
+                            <td>WHITE</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NCC</td>
+                            <td>Outpost Siege</td>
+                            <td>4</td>
+                            <td>ENCHANTMENT</td>
+                            <td>RED</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Path to the World Tree</td>
+                            <td>2</td>
+                            <td>ENCHANTMENT</td>
+                            <td>GREEN</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Peat Bog</td>
+                            <td>0</td>
+                            <td>LAND</td>
+                            <td>BLACK</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>NCC</td>
+                            <td>Phabine, Boss's Confidant</td>
+                            <td>6</td>
+                            <td>CREATURE</td>
+                            <td>THREE_COLOR</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>MH2</td>
+                            <td>Piru, the volatile</td>
+                            <td>8</td>
+                            <td>CREATURE</td>
+                            <td>THREE_COLOR</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Release to Memory</td>
+                            <td>4</td>
+                            <td>INSTANT</td>
+                            <td>WHITE</td>
+                            <td>RARE</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Run Amok</td>
+                            <td>2</td>
+                            <td>INSTANT</td>
+                            <td>RED</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Rune of Speed</td>
+                            <td>2</td>
+                            <td>ENCHANTMENT</td>
+                            <td>RED</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>KHM</td>
+                            <td>Saw It Coming</td>
+                            <td>4</td>
+                            <td>INSTANT</td>
+                            <td>BLUE</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>MH2</td>
+                            <td>Scurry Oak</td>
+                            <td>3</td>
+                            <td>CREATURE</td>
+                            <td>GREEN</td>
+                            <td>UNCOMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Seeker of the Way</td>
+                            <td>2</td>
+                            <td>CREATURE</td>
+                            <td>WHITE</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>true</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2X2</td>
+                            <td>Shorikai, Genesis Engine</td>
+                            <td>4</td>
+                            <td>ARTIFACT</td>
+                            <td>BLUE_WHITE</td>
+                            <td>MYTHIC_RARE</td>
+                            <td>true</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Soothsayer Adept</td>
+                            <td>2</td>
+                            <td>CREATURE</td>
+                            <td>BLUE</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>STX</td>
+                            <td>Specter of the Fens</td>
+                            <td>4</td>
+                            <td>CREATURE</td>
+                            <td>BLACK</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>MH2</td>
+                            <td>World-Weary</td>
+                            <td>5</td>
+                            <td>ENCHANTMENT</td>
+                            <td>BLACK</td>
+                            <td>COMMON</td>
+                            <td>false</td>
+                            <td>false</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <script>
+                    // Filter Table based off search input -------------------------------------------------------------
+                    //CODE CITE: https://www.w3schools.com/howto/howto_js_filter_table.asp
+                    function searchCollection() {
+                        // Declare variables
+                        var input, filter, table, tr, td, i, txtValue; //declares variables
+                        input = document.getElementById("collectionSearchInput"); //getting the inputed value
+                        filter = collectionSearchInput.value.toUpperCase(); //change what ppl enter to uppercase
+                        table = document.getElementById("collectionTable");
+                        tr = table.getElementsByTagName("tr");
 
-    <main>
-        <div class="container" id="table_Display">
-            <table id="main_table">
-                <tr>
-                    <th>Quantity</th>
-                    <th>Name</th>
-                    <th>Set</th>
-                    <th>CMC</th>
-                    <th>Colors</th>
-                    <th>Types</th>
-                    <th>Rarity</th>
-                    <th>Foil</th>
-                    <th>Full Art</th>
-                </tr>
-            </table>
+                        // Loop through all table rows, and hide those who don't match the search query
+                        for (i = 0; i < tr.length; i++) {
+                            td = tr[i].getElementsByTagName("td")[1]; //search off card name
+                            if (td) {
+                              txtValue = td.textContent || td.innerText;
+                              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                              } else {
+                                tr[i].style.display = "none";
+                              }
+                            }
+                        }
+                    }
+                </script>
+                <script>
+                    // Sort Table --------------------------------------------------------------------------------------
+                    //CODE CITE: https://www.w3schools.com/howto/howto_js_sort_table.asp & https://www.youtube.com/watch?v=QxbJ9b-mpoA
+                    tableHeaders = document.getElementsByTagName('th');
+                    for (let tableColumns = 0; tableColumns < tableHeaders.length; tableColumns++) {
+                        tableHeaders[tableColumns].addEventListener('click', sorter(tableColumns));
+                    }
+
+                    function sorter(tableColumns) {
+                        return function() {
+                            sortTable(tableColumns);
+                        }
+                    }
+
+                    function sortTable(tableColumns) {
+                        var table, rows, switching, i, x, y, shouldSwitch;
+                        table = document.getElementById("collectionTable");
+                        switching = true;
+                        /* Make a loop that will continue until no switching has been done: */
+                        while (switching) {
+                            switching = false;
+                            rows = table.rows;
+                            /* Loop through all table rows (except the first, which contains table headers): */
+                            for (i = 1; i < (rows.length - 1); i++) {
+                                // Start by saying there should be no switching:
+                                shouldSwitch = false;
+                                /* Get the two elements you want to compare, one from current row and one from the next: */
+                                x = rows[i].getElementsByTagName("TD")[tableColumns];
+                                y = rows[i + 1].getElementsByTagName("TD")[tableColumns];
+                                // Check if the two rows should switch place:
+                                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                    // If so, mark as a switch and break the loop:
+                                    shouldSwitch = true;
+                                    break;
+                                }
+                            }
+                            if (shouldSwitch) {
+                                /* If a switch has been marked, make the switch and mark that a switch has been done: */
+                                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                                switching = true;
+                            }
+                        }
+                    }
+                </script>
+            </div>
         </div>
-    </main>
+    </body>
 </html>

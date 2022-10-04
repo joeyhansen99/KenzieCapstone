@@ -3,7 +3,7 @@ import DataStore from "../util/DataStore";
 import CardClient from "../api/cardClient";
 
 
-class IndexPage extends BaseClass {
+class AddCardPage extends BaseClass {
     constructor() {
         super();
         this.bindClassMethods(['method names', 'secondMethodName'], this);
@@ -37,8 +37,8 @@ class IndexPage extends BaseClass {
 
 
 const main = async () => {
-    const indexPage = new IndexPage();
-    indexPage.mount();
+    const addcardPage = new AddCardPage();
+    addcardPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);
