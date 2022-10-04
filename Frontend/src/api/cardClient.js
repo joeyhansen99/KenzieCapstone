@@ -5,7 +5,7 @@ export default class CardClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getExample', 'createExample'];
+        const methodsToBind = ['clientLoaded', 'getAllCards', 'createCard', 'updateCard', 'getCard', 'deleteCard'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -23,16 +23,17 @@ export default class CardClient extends BaseClass {
     async getAllCards(errorCallback) {
         try {
             const response = await this.client.get(`/cards`);
+            // console.log('getAllCards');
+            // console.log(response.data);
             return response.data;
         } catch (error) {
             this.handleError('getAllCards', error, errorCallback);
         }
     }
 
-    //async means this method doesnt execute until called
+
     async createCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
         try {
-            //const = constant
             const response = await this.client.post(`/cards`,
             {
                 "id": id,
@@ -46,6 +47,8 @@ export default class CardClient extends BaseClass {
                 "type": type,
                 "rarity": rarity,
             });
+            // console.log('createCard');
+            // console.log(response.data);
             return response.data;
         } catch (error) {
             this.showMessage('Card already exists in the collection');
@@ -60,6 +63,8 @@ export default class CardClient extends BaseClass {
                 foil: `${foil}`,
                 fullArt: `${fullArt}`,
                 quantity: `${quantity}`});
+            // console.log('updateCard');
+            // console.log(response.data);
             return response.data;
         } catch (error) {
             this.handleError('updateCard', error, errorCallback);
@@ -70,6 +75,8 @@ export default class CardClient extends BaseClass {
     async getCard(id, errorCallback) {
         try {
             const response = await this.client.get(`/cards/${id}`);
+            // console.log('getCard');
+            // console.log(response.data);
             return response.data;
         } catch (error) {
             this.showMessage('Card could not be found');
@@ -81,9 +88,22 @@ export default class CardClient extends BaseClass {
     async deleteCard(id, errorCallback) {
         try {
             const response = await this.client.delete(`/cards/${id}`);
+            // console.log('deleteCard');
+            // console.log(response.data);
             return response.data;
         } catch (error) {
             this.handleError('deleteCard', error, errorCallback);
+        }
+    }
+
+    async getCardData(name, errorCallback) {
+        try {
+            const response = await this.client.get(`/cards/{cardId}`);
+            // console.log('getCardData');
+            // console.log(response.data);
+            return response.data;
+        } catch (error) {
+            this.handleError('getCardData', error, errorCallback);
         }
     }
 

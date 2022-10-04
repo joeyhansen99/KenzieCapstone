@@ -9,6 +9,8 @@ module.exports = {
   },
   entry: {
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
+    collectionPage: path.resolve(__dirname, 'src', 'pages', 'collectionPage.js'),
+    addCardPage: path.resolve(__dirname, 'src', 'pages', 'addcardPage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -44,11 +46,20 @@ module.exports = {
       filename: 'collection.html',
       inject: false
     }),
+    new HtmlWebpackPlugin({
+      template: './src/addcard.html',
+      filename: 'addCard.html',
+      inject: false
+    }),
     new CopyPlugin({
       patterns: [
         {
           from: path.resolve('src/css'),
           to: path.resolve("dist/css")
+        },
+        {
+          from: path.resolve('src/images'),
+          to: path.resolve("dist/images")
         }
       ]
     }),

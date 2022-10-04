@@ -84,4 +84,5 @@ public class CardController {
         List<ExternalCard> externalCardList = cardService.returnCardList(searchTerm);
         return ResponseEntity.ok(CardResponse.externalToResponse(externalCardList));
     }
+
 }
