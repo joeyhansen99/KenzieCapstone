@@ -1,14 +1,13 @@
 package com.kenzie.appserver.controller;
 
-
 import com.kenzie.appserver.controller.model.CardResponse;
 import com.kenzie.appserver.controller.model.CardUpdateRequest;
 import com.kenzie.appserver.controller.model.CreateCardRequest;
 import com.kenzie.appserver.service.CardService;
 import com.kenzie.appserver.service.model.Card;
+import com.kenzie.capstone.service.model.ExternalCard;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ public class CardController {
     }
 
     @GetMapping("/{cardId}")
-    public ResponseEntity<CardResponse> getCard(@PathVariable("cardId") String cardId) throws Exception {
+    public ResponseEntity<CardResponse> getCard(@PathVariable("cardId") String cardId) {
         Card card = cardService.findById(cardId);
         if (card == null) {
             return ResponseEntity.notFound().build();
@@ -36,11 +35,11 @@ public class CardController {
     }
 
     @PostMapping
-    public ResponseEntity<CardResponse> addCard(@RequestBody CreateCardRequest createCardRequest) throws Exception {
+    public ResponseEntity<CardResponse> addCard(@RequestBody CreateCardRequest createCardRequest) {
         Card card = cardService.addNewCard(new Card(randomUUID().toString(),
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
-                1,
+                createCardRequest.getQuantity(),
                 createCardRequest.getCost(),
                 createCardRequest.getCardColor(),
                 createCardRequest.getCardType(),
@@ -79,4 +78,11 @@ public class CardController {
         CardResponse cardResponse = CardResponse.createCardResponse(cardService.findById(cardId));
         return ResponseEntity.ok(cardResponse);
     }
+
+    @GetMapping
+    public ResponseEntity<List<CardResponse>> searchExternalApiByName(@PathVariable("searchTerm") String searchTerm) {
+        List<ExternalCard> externalCardList = cardService.returnCardList(searchTerm);
+        return ResponseEntity.ok(CardResponse.externalToResponse(externalCardList));
+    }
+
 }

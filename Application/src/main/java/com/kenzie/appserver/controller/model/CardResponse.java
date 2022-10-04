@@ -2,12 +2,15 @@ package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import com.kenzie.appserver.service.model.Card;
-
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
+import com.kenzie.capstone.service.model.ExternalCard;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CardResponse {
@@ -33,16 +36,13 @@ public class CardResponse {
     private int cost; // combined mana cost of card
 
     @JsonProperty("color")
-    public CardColor color; // color of card
+    public List<CardColor> color; // color of card
 
     @JsonProperty("type")
-    public CardType type; // type of card
+    public List<CardType> type; // type of card
 
     @JsonProperty("rarity")
     public CardRarity rarity; // rarity of card
-
-
-
 
     public String getId() {
         return id;
@@ -100,19 +100,19 @@ public class CardResponse {
         this.cost = cost;
     }
 
-    public CardColor getCardColor() {
+    public List<CardColor> getCardColor() {
         return color;
     }
 
-    public void setCardColor(CardColor color) {
+    public void setCardColor(List<CardColor> color) {
         this.color = color;
     }
 
-    public CardType getCardType() {
+    public List<CardType> getCardType() {
         return type;
     }
 
-    public void setCardType(CardType type) {
+    public void setCardType(List<CardType> type) {
         this.type = type;
     }
 
@@ -142,5 +142,49 @@ public class CardResponse {
 
     }
 
-
+    public static List<CardResponse> externalToResponse(List<ExternalCard> externalCardList) {
+        List<CardResponse> cardResponseList = new ArrayList<>();
+        List<CardColor> colorList = Arrays.asList(CardColor.B, CardColor.U, CardColor.G,
+                CardColor.R, CardColor.W, CardColor.COLORLESS);
+        List<CardType> typeList = Arrays.asList(CardType.ARTIFACT, CardType.CONSPIRACY, CardType.CREATURE,
+                CardType.ENCHANTMENT, CardType.INSTANT, CardType.LAND, CardType.PHENOMENON, CardType.PLANE,
+                CardType.PLANESWALKER, CardType.SCHEME, CardType.SORCERY, CardType.TRIBAL, CardType.VANGUARD);
+        List<CardRarity> rarityList = Arrays.asList(CardRarity.COMMON, CardRarity.UNCOMMON, CardRarity.RARE,
+                CardRarity.MYTHIC_RARE);
+        for (ExternalCard ec : externalCardList) {
+            CardResponse cr = new CardResponse();
+            cr.setName(ec.getName());
+            cr.setSet(ec.getSet());
+            cr.setFoil(false);
+            cr.setFullArt(false);
+            cr.setQuantity(1);
+            List<CardColor> crColorList = new ArrayList<>();
+            for (String color : ec.getColors()) {
+                for (CardColor c : colorList) {
+                    if (c.toString().equals(color)) {
+                        crColorList.add(c);
+                    } else {
+                        crColorList.add(CardColor.COLORLESS);
+                    }
+                }
+            }
+            cr.setCardColor(crColorList);
+            List<CardType> crTypeList = new ArrayList<>();
+            for (String type : ec.getTypes()) {
+                for (CardType t : typeList) {
+                    if (t.toString().equals(type)) {
+                        crTypeList.add(t);
+                    }
+                }
+            }
+            cr.setCardType(crTypeList);
+            for (CardRarity rarity : rarityList) {
+                if (rarity.toString().equals(ec.getRarity())) {
+                    cr.setCardRarity(rarity);
+                }
+            }
+            cardResponseList.add(cr);
+        }
+        return cardResponseList;
+    }
 }

@@ -14,10 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.UUID.randomUUID;
 import static org.mockito.Mockito.*;
@@ -26,13 +23,12 @@ public class CardServiceTest {
     private CardRepository cardRepository;
     private CardService cardService;
     private CacheStore cacheStore;
-    private LambdaServiceClient lambdaServiceClient;
 
     @BeforeEach
     void setup() {
         cardRepository = mock(CardRepository.class);
         cacheStore = mock(CacheStore.class);
-        lambdaServiceClient = mock(LambdaServiceClient.class);
+        LambdaServiceClient lambdaServiceClient = mock(LambdaServiceClient.class);
         cardService = new CardService(cardRepository, cacheStore, lambdaServiceClient);
     }
 
@@ -46,8 +42,8 @@ public class CardServiceTest {
         record.setSet("Test Set");
         record.setQuantity(1);
         record.setCost(5);
-        record.setCardColor(CardColor.BLUE);
-        record.setCardType(CardType.CREATURE);
+        record.setCardColor(Collections.singletonList(CardColor.U));
+        record.setCardType(Collections.singletonList(CardType.CREATURE));
         record.setCardRarity(CardRarity.COMMON);
         // WHEN
         when(cardRepository.findById(id)).thenReturn(Optional.of(record));
@@ -76,8 +72,8 @@ public class CardServiceTest {
         record1.setSet("Test Set 1");
         record1.setQuantity(1);
         record1.setCost(5);
-        record1.setCardColor(CardColor.BLUE);
-        record1.setCardType(CardType.CREATURE);
+        record1.setCardColor(Collections.singletonList(CardColor.U));
+        record1.setCardType(Collections.singletonList(CardType.CREATURE));
         record1.setCardRarity(CardRarity.COMMON);
 
         CardRecord record2 = new CardRecord();
@@ -86,8 +82,8 @@ public class CardServiceTest {
         record2.setSet("Test Set 2");
         record2.setQuantity(2);
         record2.setCost(10);
-        record2.setCardColor(CardColor.RED);
-        record2.setCardType(CardType.ARTIFACT);
+        record2.setCardColor(Collections.singletonList(CardColor.R));
+        record2.setCardType(Collections.singletonList(CardType.ARTIFACT));
         record2.setCardRarity(CardRarity.RARE);
 
         List<CardRecord> recordList = new ArrayList<>();
@@ -135,7 +131,7 @@ public class CardServiceTest {
     void addNewCard() {
         // GIVEN
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
-                CardColor.BLACK_RED, CardType.LAND, CardRarity.UNCOMMON);
+                Arrays.asList(CardColor.B,CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         ArgumentCaptor<CardRecord> cardRecordArgumentCaptor = ArgumentCaptor.forClass(CardRecord.class);
 
         // WHEN
@@ -163,7 +159,7 @@ public class CardServiceTest {
     void updateCard() {
         //GIVEN
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
-                CardColor.BLACK_RED, CardType.LAND, CardRarity.UNCOMMON);
+                Arrays.asList(CardColor.B,CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         cardService.addNewCard(card);
 
         CardUpdateRequest cardUpdateRequest = new CardUpdateRequest();
@@ -184,7 +180,7 @@ public class CardServiceTest {
     @Test
     void deleteCard() {
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
-                CardColor.BLACK_RED, CardType.LAND, CardRarity.UNCOMMON);
+                Arrays.asList(CardColor.B,CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         cardService.addNewCard(card);
         cardService.deleteCard(card.getId());
 

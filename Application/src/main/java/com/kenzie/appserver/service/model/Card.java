@@ -1,5 +1,7 @@
 package com.kenzie.appserver.service.model;
 
+import java.util.List;
+
 public class Card {
 
     private String id; // unique id number
@@ -9,15 +11,15 @@ public class Card {
     private boolean fullArt; // does card display full art
     private int quantity; // number of this card in collection
     private int cost; // combined mana cost of card
-    private CardColor color; // color of card
-    private CardType type; // type of card
+    private List<CardColor> color; // color of card
+    private List<CardType> type; // type of card
     private CardRarity rarity; // rarity of card
 
     public Card() {
     }
 
-    public Card(String id, String name, String set, int quantity, int cost, CardColor color,
-                CardType type, CardRarity rarity) {
+    public Card(String id, String name, String set, int quantity, int cost, List<CardColor> color,
+                List<CardType> type, CardRarity rarity) {
         this.id = id;
         this.name = name;
         this.set = set;
@@ -58,11 +60,11 @@ public class Card {
         return cost;
     }
 
-    public CardColor getCardColor() {
+    public List<CardColor> getCardColor() {
         return color;
     }
 
-    public CardType getCardType() {
+    public List<CardType> getCardType() {
         return type;
     }
 

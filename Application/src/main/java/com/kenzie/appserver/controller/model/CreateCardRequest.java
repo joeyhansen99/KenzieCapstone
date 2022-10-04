@@ -7,6 +7,7 @@ import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 public class CreateCardRequest {
     @NotEmpty
@@ -32,10 +33,10 @@ public class CreateCardRequest {
     private int cost; // combined mana cost of card
 
     @JsonProperty("color")
-    public CardColor color; // color of card
+    public List<CardColor> color; // color of card
 
     @JsonProperty("type")
-    public CardType type; // type of card
+    public List<CardType> type; // type of card
 
     @JsonProperty("rarity")
     public CardRarity rarity; // rarity of card
@@ -100,19 +101,19 @@ public class CreateCardRequest {
         this.cost = cost;
     }
 
-    public CardColor getCardColor() {
+    public List<CardColor> getCardColor() {
         return color;
     }
 
-    public void setCardColor(CardColor color) {
+    public void setCardColor(List<CardColor> color) {
         this.color = color;
     }
 
-    public CardType getCardType() {
+    public List<CardType> getCardType() {
         return type;
     }
 
-    public void setCardType(CardType type) {
+    public void setCardType(List<CardType> type) {
         this.type = type;
     }
 
