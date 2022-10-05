@@ -1,11 +1,12 @@
 package com.kenzie.appserver.controller.model;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kenzie.appserver.service.model.Card;
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.kenzie.capstone.service.model.ExternalCard;
 
 import java.util.ArrayList;
@@ -14,35 +15,44 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CardResponse {
+
     @JsonProperty("id")
     private String id;
 
     @JsonProperty("name")
     private String name;
 
+    // card set
     @JsonProperty("set")
-    private String set; // card set
+    private String set;
 
+    // does card have foil finish
     @JsonProperty("foil")
-    private boolean foil; // does card have foil finish
+    private boolean foil;
 
+    // does card display full art
     @JsonProperty("fullArt")
-    private boolean fullArt; // does card display full art
+    private boolean fullArt;
 
+    // number of this card in collection
     @JsonProperty("quantity")
-    private int quantity; // number of this card in collection
+    private int quantity;
 
+    // combined mana cost of card
     @JsonProperty("cost")
-    private int cost; // combined mana cost of card
+    private int cost;
 
+    // color of card
     @JsonProperty("color")
-    public List<CardColor> color; // color of card
+    private List<CardColor> color;
 
+    // type of card
     @JsonProperty("type")
-    public List<CardType> type; // type of card
+    private List<CardType> type;
 
+    // rarity of card
     @JsonProperty("rarity")
-    public CardRarity rarity; // rarity of card
+    private CardRarity rarity;
 
     public String getId() {
         return id;
@@ -124,7 +134,7 @@ public class CardResponse {
         this.rarity = rarity;
     }
 
-    public static CardResponse createCardResponse(Card card){
+    public static CardResponse createCardResponse(Card card) {
 
         CardResponse cardResponse = new CardResponse();
         cardResponse.setId(card.getId());
