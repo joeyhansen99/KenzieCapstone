@@ -8,16 +8,28 @@ import com.kenzie.appserver.service.model.Card;
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
+
 import com.kenzie.capstone.service.client.LambdaServiceClient;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import org.mockito.ArgumentCaptor;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 import static java.util.UUID.randomUUID;
-import static org.mockito.Mockito.*;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 
 public class CardServiceTest {
     private CardRepository cardRepository;
@@ -131,7 +143,7 @@ public class CardServiceTest {
     void addNewCard() {
         // GIVEN
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
-                Arrays.asList(CardColor.B,CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
+                Arrays.asList(CardColor.B, CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         ArgumentCaptor<CardRecord> cardRecordArgumentCaptor = ArgumentCaptor.forClass(CardRecord.class);
 
         // WHEN
@@ -159,7 +171,7 @@ public class CardServiceTest {
     void updateCard() {
         //GIVEN
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
-                Arrays.asList(CardColor.B,CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
+                Arrays.asList(CardColor.B, CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         cardService.addNewCard(card);
 
         CardUpdateRequest cardUpdateRequest = new CardUpdateRequest();
@@ -180,11 +192,12 @@ public class CardServiceTest {
     @Test
     void deleteCard() {
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
-                Arrays.asList(CardColor.B,CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
+                Arrays.asList(CardColor.B, CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         cardService.addNewCard(card);
         cardService.deleteCard(card.getId());
 
         verify(cardRepository).deleteById(card.getId());
         verify(cacheStore).evict(card.getId());
     }
+
 }

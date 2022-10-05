@@ -4,16 +4,26 @@ import java.util.List;
 
 public class Card {
 
-    private String id; // unique id number
-    private String name; // name of card
-    private String set; // card set
-    private boolean foil; // does card have foil finish
-    private boolean fullArt; // does card display full art
-    private int quantity; // number of this card in collection
-    private int cost; // combined mana cost of card
-    private List<CardColor> color; // color of card
-    private List<CardType> type; // type of card
-    private CardRarity rarity; // rarity of card
+    // unique id number
+    private String id;
+    // name of card
+    private String name;
+    // card set
+    private String set;
+    // does card have foil finish
+    private boolean foil;
+    // does card display full art
+    private boolean fullArt;
+    // number of this card in collection
+    private int quantity;
+    // combined mana cost of card
+    private int cost;
+    // color of card
+    private List<CardColor> color;
+    // type of card
+    private List<CardType> type;
+    // rarity of card
+    private CardRarity rarity;
 
     public Card() {
     }

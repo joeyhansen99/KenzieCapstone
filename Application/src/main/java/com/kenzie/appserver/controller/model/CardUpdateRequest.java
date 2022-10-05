@@ -1,7 +1,6 @@
 package com.kenzie.appserver.controller.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.kenzie.appserver.service.model.Card;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -10,12 +9,18 @@ public class CardUpdateRequest {
     @NotEmpty
     @JsonProperty("id")
     private String id;
+
+    // does card have foil finish
     @JsonProperty("foil")
-    private boolean foil; // does card have foil finish
+    private boolean foil;
+
+    // does card display full art
     @JsonProperty("fullArt")
-    private boolean fullArt; // does card display full art*/
+    private boolean fullArt;
+
+    // number of this card in collection
     @JsonProperty("quantity")
-    private int quantity; // number of this card in collection
+    private int quantity;
 
     public String getId() {
         return id;
@@ -50,5 +55,3 @@ public class CardUpdateRequest {
     }
 
 }
-
-//quantity full art and foil
