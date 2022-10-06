@@ -76,6 +76,8 @@ public class CardService {
             cardRecord.setCardRarity(card.getCardRarity());
             cardRepository.save(cardRecord);
             cache.evict(card.getId());
+        } else {
+            System.out.println("Update failed - card does not exist!");
         }
     }
 

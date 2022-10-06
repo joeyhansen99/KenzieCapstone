@@ -11,12 +11,15 @@ import com.kenzie.appserver.service.model.CardType;
 
 import com.kenzie.capstone.service.client.LambdaServiceClient;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import org.mockito.ArgumentCaptor;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,6 +35,8 @@ import static org.mockito.Mockito.when;
 
 
 public class CardServiceTest {
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private final PrintStream standardOut = System.out;
     private CardRepository cardRepository;
     private CardService cardService;
     private CacheStore cacheStore;
@@ -42,6 +47,16 @@ public class CardServiceTest {
         cacheStore = mock(CacheStore.class);
         LambdaServiceClient lambdaServiceClient = mock(LambdaServiceClient.class);
         cardService = new CardService(cardRepository, cacheStore, lambdaServiceClient);
+    }
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
     }
 
     @Test
@@ -60,7 +75,6 @@ public class CardServiceTest {
         // WHEN
         when(cardRepository.findById(id)).thenReturn(Optional.of(record));
         Card card = cardService.findById(id);
-
         // THEN
         Assertions.assertNotNull(record, "object is returned");
         Assertions.assertEquals(card.getId(), record.getId(), "id matches");
@@ -102,10 +116,8 @@ public class CardServiceTest {
         recordList.add(record1);
         recordList.add(record2);
         when(cardRepository.findAll()).thenReturn(recordList);
-
         // WHEN
         List<Card> cards = cardService.findAllCards();
-
         // THEN
         Assertions.assertNotNull(cards, "The card list is returned");
         Assertions.assertEquals(2, cards.size(), "There are two cards");
@@ -145,10 +157,8 @@ public class CardServiceTest {
         Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
                 Arrays.asList(CardColor.B, CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         ArgumentCaptor<CardRecord> cardRecordArgumentCaptor = ArgumentCaptor.forClass(CardRecord.class);
-
         // WHEN
         Card returnedCard = cardService.addNewCard(card);
-
         // THEN
         Assertions.assertNotNull(returnedCard);
         verify(cardRepository).save(cardRecordArgumentCaptor.capture());
@@ -174,19 +184,46 @@ public class CardServiceTest {
                 Arrays.asList(CardColor.B, CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
         cardService.addNewCard(card);
 
+        CardRecord record = new CardRecord();
+        record.setId(card.getId());
+        record.setName(card.getName());
+        record.setSet(card.getSet());
+        record.setQuantity(card.getQuantity());
+        record.setCost(card.getCost());
+        record.setCardColor(card.getCardColor());
+        record.setCardType(card.getCardType());
+        record.setCardRarity(card.getCardRarity());
+
         CardUpdateRequest cardUpdateRequest = new CardUpdateRequest();
         cardUpdateRequest.setId(card.getId());
         cardUpdateRequest.setFoil(card.isFoil());
         cardUpdateRequest.setFullArt(card.isFullArt());
         cardUpdateRequest.setQuantity(2);
-
         //WHEN
         when(cardRepository.existsById(card.getId())).thenReturn(true);
+        when(cardRepository.findById(cardUpdateRequest.getId())).thenReturn(Optional.of(record));
         cardService.updateCard(cardUpdateRequest);
-
         //THEN
         verify(cacheStore).evict(card.getId());
+    }
 
+    @Test
+    void updateCardWhenCardDoesNotExist() {
+        //GIVEN
+        Card card = new Card(randomUUID().toString(), "test name", "test set", 1, 2,
+                Arrays.asList(CardColor.B, CardColor.R), List.of(CardType.LAND), CardRarity.UNCOMMON);
+        cardService.addNewCard(card);
+
+        CardUpdateRequest cardUpdateRequest = new CardUpdateRequest();
+        cardUpdateRequest.setId(card.getId());
+        cardUpdateRequest.setFoil(card.isFoil());
+        cardUpdateRequest.setFullArt(card.isFullArt());
+        cardUpdateRequest.setQuantity(2);
+        //WHEN
+        when(cardRepository.existsById(card.getId())).thenReturn(false);
+        cardService.updateCard(cardUpdateRequest);
+        //THEN
+        Assertions.assertEquals("Update failed - card does not exist!", outputStreamCaptor.toString().trim());
     }
 
     @Test
