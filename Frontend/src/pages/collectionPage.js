@@ -1,6 +1,6 @@
 import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
-import CardClient from "../api/CardClient";
+import CardClient from "../api/cardClient";
 
 /**
  * Logic needed for the view playlist page of the website.
