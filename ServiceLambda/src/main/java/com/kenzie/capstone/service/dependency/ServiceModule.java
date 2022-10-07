@@ -1,8 +1,7 @@
 package com.kenzie.capstone.service.dependency;
-
 import com.kenzie.capstone.service.ExternalCardService;
-
 import com.kenzie.capstone.service.dao.ExternalCardDao;
+
 import dagger.Module;
 import dagger.Provides;
 

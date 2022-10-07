@@ -1,28 +1,39 @@
 package com.kenzie.appserver.repositories.model;
+import com.kenzie.appserver.service.model.CardColor;
+import com.kenzie.appserver.service.model.CardRarity;
+import com.kenzie.appserver.service.model.CardType;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 import com.google.common.base.Objects;
-import com.kenzie.appserver.service.model.CardColor;
-import com.kenzie.appserver.service.model.CardRarity;
-import com.kenzie.appserver.service.model.CardType;
 
 import java.util.List;
 
 @DynamoDBTable(tableName = "cards")
 public class CardRecord {
 
-    private String id; // unique id number
-    private String name; // name of card
-    private String set; // card set
-    private boolean foil; // does card have foil finish
-    private boolean fullArt; // does card display full art
-    private int quantity; // number of this card in collection
-    private int cost; // combined mana cost of card
-    private List<CardColor> color; // color of card
-    private List<CardType> type; // type of card
-    private CardRarity rarity; // rarity of card
+    // unique id number
+    private String id;
+    // name of card
+    private String name;
+    // card set
+    private String set;
+    // does card have foil finish
+    private boolean foil;
+    // does card display full art
+    private boolean fullArt;
+    // number of this card in collection
+    private int quantity;
+    // combined mana cost of card
+    private int cost;
+    // color of card
+    private List<CardColor> color;
+    // type of card
+    private List<CardType> type;
+    // rarity of card
+    private CardRarity rarity;
 
     @DynamoDBHashKey(attributeName = "id")
     public String getId() {
@@ -86,6 +97,7 @@ public class CardRecord {
     public void setSet(String set) {
         this.set = set;
     }
+
     public void setFoil(boolean foil) {
         this.foil = foil;
     }
@@ -116,8 +128,12 @@ public class CardRecord {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         CardRecord that = (CardRecord) o;
         return foil == that.foil && fullArt == that.fullArt && quantity == that.quantity && cost == that.cost &&
                 Objects.equal(id, that.id) && Objects.equal(name, that.name) && Objects.equal(set, that.set) &&

@@ -1,15 +1,14 @@
 package com.kenzie.capstone.service.dependency;
-
-
 import com.kenzie.capstone.service.dao.ExternalCardDao;
 
 import dagger.Module;
 import dagger.Provides;
 
+import java.net.http.HttpClient;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-import java.net.http.HttpClient;
 
 @Module
 public class DaoModule {

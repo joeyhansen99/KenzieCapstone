@@ -5,8 +5,10 @@ import com.kenzie.appserver.controller.model.CardUpdateRequest;
 import com.kenzie.appserver.repositories.CardRepository;
 import com.kenzie.appserver.repositories.model.CardRecord;
 import com.kenzie.appserver.service.model.Card;
+
 import com.kenzie.capstone.service.client.LambdaServiceClient;
 import com.kenzie.capstone.service.model.ExternalCard;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +76,8 @@ public class CardService {
             cardRecord.setCardRarity(card.getCardRarity());
             cardRepository.save(cardRecord);
             cache.evict(card.getId());
+        } else {
+            System.out.println("Update failed - card does not exist!");
         }
     }
 
@@ -90,8 +94,8 @@ public class CardService {
         List<Card> cards = new ArrayList<>();
         Iterable<CardRecord> cardRecordIterable = cardRepository.findAll();
         for (CardRecord record : cardRecordIterable) {
-            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.getQuantity(), record.getCost(),
-                    record.getCardColor(), record.getCardType(), record.getCardRarity()));
+            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.getQuantity(),
+                    record.getCost(), record.getCardColor(), record.getCardType(), record.getCardRarity()));
         }
         return cards;
     }
