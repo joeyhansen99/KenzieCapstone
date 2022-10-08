@@ -1,6 +1,9 @@
 package com.kenzie.capstone.service.dependency;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.kenzie.capstone.service.dao.ExampleDao;
 import com.kenzie.capstone.service.dao.ExternalCardDao;
 
+import com.kenzie.capstone.service.util.DynamoDbClientProvider;
 import dagger.Module;
 import dagger.Provides;
 
@@ -28,5 +31,22 @@ public class DaoModule {
     public ExternalCardDao provideExternalCardDao(@Named("HttpClient") HttpClient httpClient) {
         return new ExternalCardDao(httpClient);
     }
+
+    // code added from original file - BEGINNING
+    @Singleton
+    @Provides
+    @Named("DynamoDBMapper")
+    public DynamoDBMapper provideDynamoDBMapper() {
+        return new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+    }
+
+    @Singleton
+    @Provides
+    @Named("ExampleDao")
+    @Inject
+    public ExampleDao provideExampleDao(@Named("DynamoDBMapper") DynamoDBMapper mapper) {
+        return new ExampleDao(mapper);
+    }
+    // code added from original file - END
 
 }
