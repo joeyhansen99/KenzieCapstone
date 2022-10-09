@@ -6,6 +6,9 @@ import com.kenzie.appserver.repositories.CardRepository;
 import com.kenzie.appserver.repositories.model.CardRecord;
 import com.kenzie.appserver.service.model.Card;
 
+import com.kenzie.appserver.service.model.CardColor;
+import com.kenzie.appserver.service.model.CardRarity;
+import com.kenzie.appserver.service.model.CardType;
 import com.kenzie.capstone.service.client.LambdaServiceClient;
 import com.kenzie.capstone.service.model.ExternalCard;
 
@@ -13,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static java.util.UUID.randomUUID;
 
 @Service
 public class CardService {
@@ -99,5 +105,4 @@ public class CardService {
         }
         return cards;
     }
-
 }

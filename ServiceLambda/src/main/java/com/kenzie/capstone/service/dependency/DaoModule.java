@@ -1,5 +1,6 @@
 package com.kenzie.capstone.service.dependency;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.kenzie.capstone.service.dao.CardDao;
 import com.kenzie.capstone.service.dao.ExampleDao;
 import com.kenzie.capstone.service.dao.ExternalCardDao;
 
@@ -49,4 +50,12 @@ public class DaoModule {
     }
     // code added from original file - END
 
+    //Code By Jet
+    @Singleton
+    @Provides
+    @Named("CardDao")
+    @Inject
+    public CardDao provideCardDao(@Named("DynamoDBMapper") DynamoDBMapper mapper) {
+        return new CardDao(mapper);
+    }
 }
