@@ -22,9 +22,9 @@ export default class CardClient extends BaseClass {
     //This is the main method which will get all cards from the collection
     async getAllCards(errorCallback) {
         try {
-            const response = await this.client.get(`/cards`);
-            // console.log('getAllCards');
-            // console.log(response.data);
+            const response = await this.client.get(`/cards/all`);
+            console.log('getAllCards');
+            console.log(response.data);
             return response.data;
         } catch (error) {
             this.handleError('getAllCards', error, errorCallback);

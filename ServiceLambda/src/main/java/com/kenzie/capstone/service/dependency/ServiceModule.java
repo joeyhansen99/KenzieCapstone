@@ -1,6 +1,7 @@
 package com.kenzie.capstone.service.dependency;
 import com.kenzie.capstone.service.ExternalCardService;
 import com.kenzie.capstone.service.LambdaService;
+import com.kenzie.capstone.service.dao.CardDao;
 import com.kenzie.capstone.service.dao.ExampleDao;
 import com.kenzie.capstone.service.dao.ExternalCardDao;
 
@@ -24,13 +25,22 @@ public class ServiceModule {
     }
 
     // code added from original file - BEGINNING
+//    @Singleton
+//    @Provides
+//    @Inject
+//    public LambdaService provideLambdaService(@Named("ExampleDao") ExampleDao exampleDao) {
+//        return new LambdaService(exampleDao);
+//    }
+    // code added from original file - END
+
+    //Code by Jet
     @Singleton
     @Provides
     @Inject
-    public LambdaService provideLambdaService(@Named("ExampleDao") ExampleDao exampleDao) {
-        return new LambdaService(exampleDao);
+    public LambdaService provideLambdaService(@Named("CardDao") CardDao cardDao) {
+        return new LambdaService(cardDao);
     }
-    // code added from original file - END
+
 }
 
 
