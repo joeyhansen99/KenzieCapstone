@@ -3,6 +3,7 @@ package com.kenzie.capstone.service.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Card {
     // unique id number
@@ -135,16 +136,42 @@ public class Card {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Card{" +
+                "name='" + name + '\'' +
+                ", set='" + set + '\'' +
+                ", foil=" + foil +
+                ", fullArt='" + fullArt + '\'' +
+                ", color='" + quantity + '\'' +
+                ", color='" + cost + '\'' +
+                ", color='" + color + '\'' +
+                ", color='" + type + '\'' +
+                ", rarity='" + rarity + '\'' +
+                '}';
     }
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(id, name, set, foil, fullArt, quantity, cost, color, type, rarity);
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Card that = (Card) obj;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(set, that.set) &&
+                Objects.equals(foil, that.foil) &&
+                Objects.equals(fullArt, that.fullArt) &&
+                Objects.equals(quantity, that.quantity) &&
+                Objects.equals(cost, that.cost) &&
+                Objects.equals(color, that.color) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(rarity, that.rarity);
     }
 }
