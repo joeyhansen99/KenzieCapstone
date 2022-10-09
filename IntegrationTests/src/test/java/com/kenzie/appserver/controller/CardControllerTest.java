@@ -1,4 +1,8 @@
 package com.kenzie.appserver.controller;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Table;
 import com.kenzie.appserver.controller.model.CardUpdateRequest;
 import com.kenzie.appserver.controller.model.CreateCardRequest;
 import com.kenzie.appserver.IntegrationTest;
@@ -25,6 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.hamcrest.Matchers.is;
 
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,6 +43,19 @@ public class CardControllerTest {
 
     private final MockNeat mockNeat = MockNeat.threadLocal();
     private final ObjectMapper mapper = new ObjectMapper();
+    private static final String CARD_TABLE_NAME = "cards";
+    private final DynamoDB client =
+            new DynamoDB(AmazonDynamoDBClientBuilder.standard().withRegion(Regions.US_EAST_1).build());
+
+    @Test
+    public void cardTable_exists() {
+        for (Table table : client.listTables()) {
+            if (table.getTableName().equals(CARD_TABLE_NAME)) {
+                return;
+            }
+        }
+        fail(String.format("Did not find expected table, '%s'", CARD_TABLE_NAME));
+    }
 
     @Test
     public void getCard() throws Exception{
