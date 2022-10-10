@@ -149,13 +149,15 @@ public class CardControllerTest {
         cardUpdateRequest.setFoil(true);
         cardUpdateRequest.setFullArt(true);
         // WHEN
-        mvc.perform(put("/cards/{cardId}")
+        mvc.perform(put("/cards/{cardId}", cardUpdateRequest.getId())
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(cardUpdateRequest)))
                 // THEN
                 .andExpect(jsonPath("id").value(is(cardUpdateRequest.getId())))
                 .andExpect(jsonPath("quantity").value(is(cardUpdateRequest.getQuantity())))
+                .andExpect(jsonPath("foil").value(is(cardUpdateRequest.isFoil())))
+                .andExpect(jsonPath("fullArt").value(is(cardUpdateRequest.isFullArt())))
                 .andExpect(status().isOk());
     }
 
