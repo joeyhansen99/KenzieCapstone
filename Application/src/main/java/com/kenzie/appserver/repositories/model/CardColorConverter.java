@@ -15,9 +15,6 @@ public class CardColorConverter implements DynamoDBTypeConverter<List<String>, L
     public List<String> convert(List<CardColor> object) {
         List<String> result = new ArrayList<>();
         if (object != null) {
-            for (CardColor c : object) {
-                result.add(c.toString());
-            }
             object.forEach(e -> result.add(e.name()));
         }
         return result;
