@@ -6,7 +6,6 @@ import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @DynamoDBTable(tableName = "cards")
@@ -136,49 +135,6 @@ public class CardRecord {
     @Override
     public int hashCode() {
         return Objects.hashCode(id, name, set, foil, fullArt, quantity, cost, color, type, rarity);
-    }
-
-    public class CardColorConverter implements DynamoDBTypeConverter<List<String>, List<CardColor>> {
-        @Override
-        public List<String> convert(List<CardColor> object) {
-            List<String> result = new ArrayList<>();
-            if (object != null) {
-                for (CardColor c : object) {
-                    result.add(c.toString());
-                }
-                object.forEach(e -> result.add(e.name()));
-            }
-            return result;
-        }
-
-        @Override
-        public List<CardColor> unconvert(List<String> object) {
-            List<CardColor> result = new ArrayList<>();
-            if (object != null) {
-                object.forEach(e -> result.add(CardColor.valueOf(e)));
-            }
-            return result;
-        }
-    }
-
-    public class CardTypeConverter implements DynamoDBTypeConverter<List<String>, List<CardType>> {
-        @Override
-        public List<String> convert(List<CardType> object) {
-            List<String> result = new ArrayList<>();
-            if (object != null) {
-                object.forEach(e -> result.add(e.name()));
-            }
-            return result;
-        }
-
-        @Override
-        public List<CardType> unconvert(List<String> object) {
-            List<CardType> result = new ArrayList<>();
-            if (object != null) {
-                object.forEach(e -> result.add(CardType.valueOf(e)));
-            }
-            return result;
-        }
     }
 
 }
