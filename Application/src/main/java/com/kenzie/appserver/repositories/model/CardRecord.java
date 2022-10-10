@@ -138,11 +138,14 @@ public class CardRecord {
         return Objects.hashCode(id, name, set, foil, fullArt, quantity, cost, color, type, rarity);
     }
 
-    private static class CardColorConverter implements DynamoDBTypeConverter<List<String>, List<CardColor>> {
+    public class CardColorConverter implements DynamoDBTypeConverter<List<String>, List<CardColor>> {
         @Override
         public List<String> convert(List<CardColor> object) {
             List<String> result = new ArrayList<>();
             if (object != null) {
+                for (CardColor c : object) {
+                    result.add(c.toString());
+                }
                 object.forEach(e -> result.add(e.name()));
             }
             return result;
@@ -158,7 +161,7 @@ public class CardRecord {
         }
     }
 
-    private static class CardTypeConverter implements DynamoDBTypeConverter<List<String>, List<CardType>> {
+    public class CardTypeConverter implements DynamoDBTypeConverter<List<String>, List<CardType>> {
         @Override
         public List<String> convert(List<CardType> object) {
             List<String> result = new ArrayList<>();
