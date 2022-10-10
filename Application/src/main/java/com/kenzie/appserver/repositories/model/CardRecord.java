@@ -1,11 +1,5 @@
 package com.kenzie.appserver.repositories.model;
-import com.kenzie.appserver.service.model.CardColor;
-import com.kenzie.appserver.service.model.CardRarity;
-import com.kenzie.appserver.service.model.CardType;
-
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import com.google.common.base.Objects;
 
@@ -13,6 +7,38 @@ import java.util.List;
 
 @DynamoDBTable(tableName = "cards")
 public class CardRecord {
+
+    public enum CardColor {
+        B,
+        U,
+        G,
+        R,
+        W,
+        COLORLESS
+    }
+
+    public enum CardRarity {
+        COMMON,
+        UNCOMMON,
+        RARE,
+        MYTHIC_RARE
+    }
+
+    public enum CardType {
+        ARTIFACT,
+        CONSPIRACY,
+        CREATURE,
+        ENCHANTMENT,
+        INSTANT,
+        LAND,
+        PHENOMENON,
+        PLANE,
+        PLANESWALKER,
+        SCHEME,
+        SORCERY,
+        TRIBAL,
+        VANGUARD
+    }
 
     // unique id number
     private String id;
@@ -39,89 +65,81 @@ public class CardRecord {
     public String getId() {
         return id;
     }
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @DynamoDBAttribute(attributeName = "name")
     public String getName() {
         return name;
+    }
+    public void setName(String name) {
+        this.name = name;
     }
 
     @DynamoDBAttribute(attributeName = "set")
     public String getSet() {
         return set;
     }
+    public void setSet(String set) {
+        this.set = set;
+    }
 
     @DynamoDBAttribute(attributeName = "foil")
     public boolean isFoil() {
         return foil;
+    }
+    public void setFoil(boolean foil) {
+        this.foil = foil;
     }
 
     @DynamoDBAttribute(attributeName = "fullArt")
     public boolean isFullArt() {
         return fullArt;
     }
+    public void setFullArt(boolean fullArt) {
+        this.fullArt = fullArt;
+    }
 
     @DynamoDBAttribute(attributeName = "quantity")
     public int getQuantity() {
         return quantity;
+    }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     @DynamoDBAttribute(attributeName = "cost")
     public int getCost() {
         return cost;
     }
-
-    @DynamoDBAttribute(attributeName = "color")
-    public List<CardColor> getCardColor() {
-        return color;
-    }
-
-    @DynamoDBAttribute(attributeName = "type")
-    public List<CardType> getCardType() {
-        return type;
-    }
-
-    @DynamoDBAttribute(attributeName = "rarity")
-    public CardRarity getCardRarity() {
-        return rarity;
-    }
-
-    //SETTERS
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSet(String set) {
-        this.set = set;
-    }
-
-    public void setFoil(boolean foil) {
-        this.foil = foil;
-    }
-
-    public void setFullArt(boolean fullArt) {
-        this.fullArt = fullArt;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     public void setCost(int cost) {
         this.cost = cost;
     }
 
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "color")
+    public List<CardColor> getCardColor() {
+        return color;
+    }
     public void setCardColor(List<CardColor> color) {
         this.color = color;
     }
 
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "type")
+    public List<CardType> getCardType() {
+        return type;
+    }
     public void setCardType(List<CardType> type) {
         this.type = type;
     }
 
+    @DynamoDBTypeConvertedEnum
+    @DynamoDBAttribute(attributeName = "rarity")
+    public CardRarity getCardRarity() {
+        return rarity;
+    }
     public void setCardRarity(CardRarity rarity) {
         this.rarity = rarity;
     }
