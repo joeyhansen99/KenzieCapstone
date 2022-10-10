@@ -46,7 +46,8 @@ public class CardController {
 
     @PostMapping
     public ResponseEntity<CardResponse> addCard(@RequestBody CreateCardRequest createCardRequest) {
-        Card card = cardService.addNewCard(new Card(randomUUID().toString(),
+        Card card = cardService.addNewCard(new Card(
+                createCardRequest.getId(),
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
                 createCardRequest.getQuantity(),
@@ -74,8 +75,8 @@ public class CardController {
         return ResponseEntity.ok(responseList);
     }
 
-    @DeleteMapping
-    public ResponseEntity deleteCardById(@PathVariable("cardId") String cardId) {
+    @DeleteMapping("/{cardId}")
+    public ResponseEntity<CardResponse> deleteCardById(@PathVariable("cardId") String cardId) {
         cardService.deleteCard(cardId);
         return ResponseEntity.noContent().build();
     }
