@@ -30,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.hamcrest.Matchers.is;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -143,22 +144,21 @@ public class CardControllerTest {
         // GIVEN
         Card card = createCardHelper();
         cardService.addNewCard(card);
+        Thread.sleep(1000);
         CardUpdateRequest cardUpdateRequest = new CardUpdateRequest();
         cardUpdateRequest.setId(card.getId());
         cardUpdateRequest.setQuantity(card.getQuantity());
         cardUpdateRequest.setFoil(true);
         cardUpdateRequest.setFullArt(true);
         // WHEN
-        mvc.perform(put("/cards/{cardId}", cardUpdateRequest.getId())
+        mvc.perform(put("/cards")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(cardUpdateRequest)))
-                // THEN
-                .andExpect(jsonPath("id").value(is(cardUpdateRequest.getId())))
-                .andExpect(jsonPath("quantity").value(is(cardUpdateRequest.getQuantity())))
-                .andExpect(jsonPath("foil").value(is(cardUpdateRequest.isFoil())))
-                .andExpect(jsonPath("fullArt").value(is(cardUpdateRequest.isFullArt())))
-                .andExpect(status().isOk());
+                        .andExpect(status().isOk());
+        // THEN
+        assertTrue(cardService.findById(cardUpdateRequest.getId()).isFoil());
+        assertTrue(cardService.findById(cardUpdateRequest.getId()).isFullArt());
     }
 
     public Card createCardHelper() {
