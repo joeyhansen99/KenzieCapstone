@@ -2,43 +2,14 @@ package com.kenzie.appserver.repositories.model;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import com.google.common.base.Objects;
+import com.kenzie.appserver.service.model.CardColor;
+import com.kenzie.appserver.service.model.CardRarity;
+import com.kenzie.appserver.service.model.CardType;
 
 import java.util.List;
 
 @DynamoDBTable(tableName = "cards")
 public class CardRecord {
-
-    public enum CardColor {
-        B,
-        U,
-        G,
-        R,
-        W,
-        COLORLESS
-    }
-
-    public enum CardRarity {
-        COMMON,
-        UNCOMMON,
-        RARE,
-        MYTHIC_RARE
-    }
-
-    public enum CardType {
-        ARTIFACT,
-        CONSPIRACY,
-        CREATURE,
-        ENCHANTMENT,
-        INSTANT,
-        LAND,
-        PHENOMENON,
-        PLANE,
-        PLANESWALKER,
-        SCHEME,
-        SORCERY,
-        TRIBAL,
-        VANGUARD
-    }
 
     // unique id number
     private String id;
