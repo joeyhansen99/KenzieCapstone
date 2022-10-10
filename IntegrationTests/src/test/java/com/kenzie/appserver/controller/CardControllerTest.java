@@ -25,6 +25,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.UUID.randomUUID;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import static org.hamcrest.Matchers.is;
@@ -62,9 +63,10 @@ public class CardControllerTest {
         //GIVEN
         Card card = createCardHelper();
         //WHEN
-        Card test = cardService.addNewCard(card);
+        cardService.addNewCard(card);
         //THEN
-        mvc.perform(get("/cards/{cardId}", test.getId())
+        Thread.sleep(1000);
+        mvc.perform(get("/cards/{cardId}", card.getId())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
                         .value(is(card.getId())))
@@ -89,23 +91,23 @@ public class CardControllerTest {
     public void getCard_CardDoesNotExist() throws Exception{
         String id = mockNeat.strings().get();
 
-        mvc.perform(get("/cards/{cardId}",id).accept(MediaType.APPLICATION_JSON))
+        mvc.perform(get("/cards/{cardId}", id).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void addCard() throws Exception{
-        Card card1 = createCardHelper();
+        Card card = createCardHelper();
 
         CreateCardRequest example = new CreateCardRequest();
-        example.setId(card1.getId());
+        example.setId(card.getId());
 
         mvc.perform(post("/cards/")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(example)))
                 .andExpect(jsonPath("id")
-                        .value(is(card1.getId())))
+                        .value(is(card.getId())))
                 .andExpect(status().isCreated());
     }
 
@@ -115,23 +117,25 @@ public class CardControllerTest {
         Card card1 = createCardHelper();
         Card card2 = createCardHelper();
         // WHEN
-        Card test = cardService.addNewCard(card1);
-        Card test1 = cardService.addNewCard(card2);
+        cardService.addNewCard(card1);
+        Thread.sleep(1000);
+        cardService.addNewCard(card2);
+        Thread.sleep(1000);
         // THEN
-        mvc.perform(get("/cards/all")).andExpect(status().isOk());
+        mvc.perform(get("/cards/all").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 
     @Test
     public void deleteCardById() throws Exception{
         // GIVEN
-        Card card1 = createCardHelper();
-        Card test = cardService.addNewCard(card1);
+        Card card = createCardHelper();
+        cardService.addNewCard(card);
         // WHEN
-        mvc.perform(delete("/cards/", test.getId())
-                        .accept(MediaType.APPLICATION_JSON))
+        Thread.sleep(1000);
+        mvc.perform(delete("/cards/{cardId}", card.getId()).accept(MediaType.APPLICATION_JSON))
                 // THEN
                 .andExpect(status().isNoContent());
-        assertThat(cardService.findById(test.getId())).isNull();
+        assertThat(cardService.findById(card.getId())).isNull();
     }
 
     @Test
@@ -140,10 +144,12 @@ public class CardControllerTest {
         Card card = createCardHelper();
         cardService.addNewCard(card);
         CardUpdateRequest cardUpdateRequest = new CardUpdateRequest();
-        cardUpdateRequest.setId(mockNeat.strings().get());
-        cardUpdateRequest.setQuantity(mockNeat.ints().get());
+        cardUpdateRequest.setId(card.getId());
+        cardUpdateRequest.setQuantity(card.getQuantity());
+        cardUpdateRequest.setFoil(true);
+        cardUpdateRequest.setFullArt(true);
         // WHEN
-        mvc.perform(put("/cards")
+        mvc.perform(put("/cards/{cardId}")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(cardUpdateRequest)))
@@ -154,18 +160,18 @@ public class CardControllerTest {
     }
 
     public Card createCardHelper() {
-        String id = mockNeat.strings().get();
+        String id = randomUUID().toString();
         String name = mockNeat.strings().get();
         String set = mockNeat.strings().get();
-        //boolean foil = mockNeat.bools().get();
-        //boolean fullArt = mockNeat.bools().get();
-        int quantity = mockNeat.ints().get();
-        int cost = mockNeat.ints().get();
+        int quantity = 1;
+        int cost = 10;
         List<CardColor> color = new ArrayList<>();
         color.add(mockNeat.constant(CardColor.R).get());
+        color.add(mockNeat.constant(CardColor.G).get());
+        color.add(mockNeat.constant(CardColor.B).get());
         List<CardType> type = new ArrayList<>();
-        type.add(mockNeat.constant(CardType.ARTIFACT).get());
-        CardRarity rarity = mockNeat.constant(CardRarity.COMMON).get();
+        type.add(mockNeat.constant(CardType.VANGUARD).get());
+        CardRarity rarity = mockNeat.constant(CardRarity.RARE).get();
 
         return new Card(id, name, set, quantity, cost, color, type, rarity);
     }

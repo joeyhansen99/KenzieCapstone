@@ -32,6 +32,9 @@ public class CardRecord {
     // rarity of card
     private CardRarity rarity;
 
+    public CardRecord() {
+    }
+
     @DynamoDBHashKey(attributeName = "id")
     public String getId() {
         return id;
