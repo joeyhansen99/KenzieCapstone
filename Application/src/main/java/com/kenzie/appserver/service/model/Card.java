@@ -42,6 +42,20 @@ public class Card {
         this.rarity = rarity;
     }
 
+    public Card(String id, String name, String set, boolean foil, boolean fullArt, int quantity, int cost,
+                List<CardColor> color, List<CardType> type, CardRarity rarity) {
+        this.id = id;
+        this.name = name;
+        this.set = set;
+        this.foil = foil;
+        this.fullArt = fullArt;
+        this.quantity = quantity;
+        this.cost = cost;
+        this.color = color;
+        this.type = type;
+        this.rarity = rarity;
+    }
+
     public String getId() {
         return id;
     }
