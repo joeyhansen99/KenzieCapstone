@@ -312,6 +312,23 @@
     transform: scale(1.1);
 }
 
+#collectionDataNo {
+    background-image: url('../images/Annul-Kaldheim-MtG-Art.jpg');
+    background-position: center;
+    background-size: cover;
+    color: #061854;
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 30px;
+    margin-right: 20px;
+    opacity: 0.7;
+    padding: 5px 15px;
+    text-align: center;
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff, 0 0 50px #ffffff, 0 0 60px #ffffff, 0 0 70px #ffffff;
+    -webkit-animation: glow 2s ease-in-out infinite alternate;
+    -moz-animation: glow 2s ease-in-out infinite alternate;
+}
+
 /* -------- Collection Table Sort Styling -------- */
 .mainCollection th:hover {
     background: #6DB6ED;
