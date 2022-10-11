@@ -95,24 +95,26 @@ public class CardService {
         }
     }
 
-    public List<Card> findAllCards() {
-        List<com.kenzie.capstone.service.model.Card> cardList = lambdaServiceClient.getAllCardsData();
-        List<Card> endList = new ArrayList<>();
-        for (com.kenzie.capstone.service.model.Card c : cardList) {
-            endList.add(convertLambdaModelToApp(c));
-        }
-        return endList;
-    }
+    //lambda version, currently non-functional due to status 400 APIGatewayException
 
 //    public List<Card> findAllCards() {
-//        List<Card> cards = new ArrayList<>();
-//        Iterable<CardRecord> cardRecordIterable = cardRepository.findAll();
-//        for (CardRecord record : cardRecordIterable) {
-//            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.getQuantity(),
-//                    record.getCost(), record.getCardColor(), record.getCardType(), record.getCardRarity()));
+//        List<com.kenzie.capstone.service.model.Card> cardList = lambdaServiceClient.getAllCardsData();
+//        List<Card> endList = new ArrayList<>();
+//        for (com.kenzie.capstone.service.model.Card c : cardList) {
+//            endList.add(convertLambdaModelToApp(c));
 //        }
-//        return cards;
+//        return endList;
 //    }
+
+    public List<Card> findAllCards() {
+        List<Card> cards = new ArrayList<>();
+        Iterable<CardRecord> cardRecordIterable = cardRepository.findAll();
+        for (CardRecord record : cardRecordIterable) {
+            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.getQuantity(),
+                    record.getCost(), record.getCardColor(), record.getCardType(), record.getCardRarity()));
+        }
+        return cards;
+    }
 
     public static Card convertLambdaModelToApp(com.kenzie.capstone.service.model.Card card) {
         return new Card(
