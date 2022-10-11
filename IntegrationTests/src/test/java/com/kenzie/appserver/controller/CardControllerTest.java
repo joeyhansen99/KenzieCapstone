@@ -151,14 +151,14 @@ public class CardControllerTest {
         cardUpdateRequest.setFoil(true);
         cardUpdateRequest.setFullArt(true);
         // WHEN
-        mvc.perform(put("/cards")
+        mvc.perform(patch("/cards/{cardId}", card.getId())
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(cardUpdateRequest)))
                         .andExpect(status().isOk());
         // THEN
-        assertTrue(cardService.findById(cardUpdateRequest.getId()).isFoil());
-        assertTrue(cardService.findById(cardUpdateRequest.getId()).isFullArt());
+        assertTrue(cardService.findById(card.getId()).isFoil());
+        assertTrue(cardService.findById(card.getId()).isFullArt());
     }
 
     public Card createCardHelper() {

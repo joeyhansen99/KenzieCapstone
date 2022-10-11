@@ -33,8 +33,9 @@ public class CardService {
     public Card findById(String id) {
         return cardRepository
                 .findById(id)
-                .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.getQuantity(), card.getCost(),
-                        card.getCardColor(), card.getCardType(), card.getCardRarity()))
+                .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.isFoil(), card.isFullArt(),
+                        card.getQuantity(), card.getCost(), card.getCardColor(), card.getCardType(),
+                        card.getCardRarity()))
                 .orElse(null);
     }
 
