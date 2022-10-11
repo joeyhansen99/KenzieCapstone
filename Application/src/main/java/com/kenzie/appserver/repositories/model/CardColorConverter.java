@@ -15,7 +15,9 @@ public class CardColorConverter implements DynamoDBTypeConverter<List<String>, L
     public List<String> convert(List<CardColor> object) {
         List<String> result = new ArrayList<>();
         if (object != null) {
-            object.forEach(e -> result.add(e.name()));
+            for (CardColor c : object) {
+                result.add(c.toString());
+            }
         }
         return result;
     }
@@ -24,8 +26,28 @@ public class CardColorConverter implements DynamoDBTypeConverter<List<String>, L
     public List<CardColor> unconvert(List<String> object) {
         List<CardColor> result = new ArrayList<>();
         if (object != null) {
-            object.forEach(e -> result.add(CardColor.valueOf(e)));
+            for (String s : object) {
+                if (s.equals(CardColor.B.toString())) {
+                    result.add(CardColor.B);
+                }
+                if (s.equals(CardColor.U.toString())) {
+                    result.add(CardColor.U);
+                }
+                if (s.equals(CardColor.G.toString())) {
+                    result.add(CardColor.G);
+                }
+                if (s.equals(CardColor.R.toString())) {
+                    result.add(CardColor.R);
+                }
+                if (s.equals(CardColor.W.toString())) {
+                    result.add(CardColor.W);
+                }
+                if (s.equals(CardColor.COLORLESS.toString())) {
+                    result.add(CardColor.COLORLESS);
+                }
+            }
         }
         return result;
     }
+
 }
