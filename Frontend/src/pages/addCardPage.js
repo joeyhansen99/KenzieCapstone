@@ -6,14 +6,12 @@ import CardClient from "../api/cardClient";
 class AddCardPage extends BaseClass {
     constructor() {
         super();
-        console.log("CONSTRUCTOR");
         this.bindClassMethods(['onCreateCard'], this);
 //        this.cardDataStore = new DataStore();
     }
 
 
     async mount() {
-        console.log("MOUNT");
         document.getElementById('addCardForm').addEventListener('submit', this.onCreateCard);
         this.cardClient = new CardClient();
     }
@@ -30,23 +28,11 @@ class AddCardPage extends BaseClass {
             let foil = false;
             let fullArt = false;
 
-//            let cardType = document.getElementByClass("cardType").value;
-//            let cardColor = document.getElementByClass("cardColor").value;
+            let cardType = document.getElementsByClassName("cardType").value;
+            let cardColor = document.getElementsByClassName("cardColor").value;
 
-            let type =
-                    {
-                       "type" : [
-                       "CREATURE"
-                       ]
-                    };
-            let color =
-                {
-                    "color": [
-                    "G",
-                     "R",
-                     "W"
-                     ]
-                };
+            let type = Array.from(document.querySelectorAll('cardType:checked'));
+            let color = Array.from(document.querySelectorAll('cardColor:checked'));
 
             let rarity = document.getElementById("addCardRarity").value;
             if (document.getElementById('foilTrue').checked) {
@@ -63,8 +49,8 @@ class AddCardPage extends BaseClass {
             console.log(set);
             console.log(name);
             console.log(cost);
-//            console.log(cardType);
-//            console.log(cardColor);
+            console.log(cardType);
+            console.log(cardColor);
             console.log(rarity);
             console.log(foil);
             console.log(fullArt);
@@ -73,7 +59,8 @@ class AddCardPage extends BaseClass {
             console.log(color);
 
 
-            const createdEvent = await this.client.createCard(id,name,set,foil,fullArt,quantity,cost,color,type,rarity,errorCallback);
+            const createdEvent = await this.cardClient.createCard(id,name,set,foil,fullArt,quantity,
+                cost,color,type,rarity);
 
             // this.dataStore.set("createdEvent",createdEvent);
 
