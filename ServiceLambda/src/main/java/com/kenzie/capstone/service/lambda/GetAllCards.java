@@ -34,7 +34,6 @@ public class GetAllCards implements RequestHandler<APIGatewayProxyRequestEvent, 
         APIGatewayProxyResponseEvent response = new APIGatewayProxyResponseEvent()
                 .withHeaders(headers);
 
-
         try {
             String output = gson.toJson(lambdaService.getAllCards());
             return response

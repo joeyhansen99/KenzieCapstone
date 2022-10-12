@@ -47,8 +47,8 @@ export default class CardClient extends BaseClass {
                 "type": type,
                 "rarity": rarity,
             });
-            // console.log('createCard');
-            // console.log(response.data);
+            console.log('createCard');
+            console.log(response.data);
             return response.data;
         } catch (error) {
             this.showMessage('Card already exists in the collection');

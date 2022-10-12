@@ -61,6 +61,7 @@ public class CardController {
 
     @GetMapping("/all")
     public ResponseEntity<List<CardResponse>> getAllCards() {
+        System.out.println("backend hit");                      //----JET REMOVE THIS --//
         List<Card> cards = cardService.findAllCards();
 
         if (cards == null || cards.isEmpty()) {
