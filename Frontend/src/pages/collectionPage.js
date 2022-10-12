@@ -8,7 +8,6 @@ class CollectionPage extends BaseClass {
         console.log("CONSTRUCTOR");
         super();
         this.bindClassMethods(['onGetTable'], this);
-//        this.cardDataStore = new DataStore();
     }
 
     async mount() {
@@ -23,23 +22,44 @@ class CollectionPage extends BaseClass {
 
     async onGetTable() {
         console.log("onGetTableHit");
+//        let cardCollectionTable = document.getElementById('collectionTable').innerHTML='';
         let cardTableData = await this.client.getAllCards(this.errorHandler);
-//        console.log(cardTableData)
-//        if (cardTableData.length > 0) {
-//            $('#collectionDataNo').hide();
-//            console.log('cardTableData = ' + cardTableData)
-//        } else {
-//            console.log("dataNoShow");
-//            $('#collectionDataNo').show();
-//        }
+
+        console.log(cardTableData);
+
+        if (cardTableData.length > 0) {
+            $('#collectionDataNo').hide();
+            //console.log('cardTableData = ' + cardTableData);
+            var html = '';
+            for(var i = 0; i < cardTableData.length; i++) {
+                    html += `<tr>`;
+                    html += `<td>` + cardTableData[i].set + `</td>`
+                    html += `<td>` + cardTableData[i].name + `</td>`
+                    html += `<td>` + cardTableData[i].cost + `</td>`
+                    html += `<td>` + cardTableData[i].type + `</td>`
+                    html += `<td>` + cardTableData[i].color + `</td>`
+                    html += `<td>` + cardTableData[i].rarity + `</td>`
+                    html += `<td>` + cardTableData[i].foil + `</td>`
+                    html += `<td>` + cardTableData[i].fullArt + `</td>`
+                    html += `<td>` + cardTableData[i].quantity + `</td>`
+                    html += `<td>
+                        <button type="button" class="editCard" onclick="editCard"><i class="fas fa-edit"></i>  Edit</button>
+                        <button type="button" class="deleteCard" onclick="deleteCard"><i class="fas fa-trash"></i>  Delete</button>
+                    </td>`
+                    html += `</tr>`;
+            }
+            let cardCollectionTable = document.getElementById('collectionTable').innerHTML=html;
+        } else {
+            console.log("dataNoShow");
+            $('#collectionDataNo').show();
+        }
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
     //displays the information
-    async renderTable() {
+    async renderTable(data) {
 //        let cardCollectionTable = document.getElementById('collectionTable').innerHTML;
 //        let cardTableData = await this.cardClient.getAllCards(this.errorHandler);
-    }
 
 }
 

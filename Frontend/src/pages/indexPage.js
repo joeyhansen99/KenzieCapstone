@@ -6,12 +6,12 @@ import CardClient from "../api/cardClient";
 class IndexPage extends BaseClass {
     constructor() {
         super();
-        this.bindClassMethods(['method names', 'secondMethodName'], this);
+//        this.bindClassMethods(['method names', 'secondMethodName'], this);
         this.cardDataStore = new DataStore();
     }
 
     async mount() {
-        document.getElementById('name of element').addEventListener('submit or click', this.eventMethodName);
+//        document.getElementById('name of element').addEventListener('submit or click', this.eventMethodName);
     }
 }
 

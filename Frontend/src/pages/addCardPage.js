@@ -31,15 +31,24 @@ class AddCardPage extends BaseClass {
             let cardType = document.getElementsByClassName("cardType").value;
             let cardColor = document.getElementsByClassName("cardColor").value;
 
-            let type = Array.from(document.querySelectorAll('cardType:checked'));
-            let color = Array.from(document.querySelectorAll('cardColor:checked'));
+            let color = document.querySelectorAll('[class=CardColor]:checked');
+            var colorArray = []
+            for (var i = 0; i < color.length; i++) {
+                colorArray.push(color[i].value)
+            }
+            let type = document.querySelectorAll('[class=CardType]:checked');
+            var typeArray = []
+            for (var i = 0; i < type.length; i++) {
+                typeArray.push(type[i].value)
+            }
 
             let rarity = document.getElementById("addCardRarity").value;
+
             if (document.getElementById('foilTrue').checked) {
-                let foil = true;
+                foil = true;
             }
             if (document.getElementById('fullArtTrue').checked) {
-                let fullArt = true;
+                fullArt = true;
             }
 
             let quantity = document.getElementById("cardQuantityInput").value;
@@ -49,18 +58,15 @@ class AddCardPage extends BaseClass {
             console.log(set);
             console.log(name);
             console.log(cost);
-            console.log(cardType);
-            console.log(cardColor);
             console.log(rarity);
             console.log(foil);
             console.log(fullArt);
             console.log(quantity);
-            console.log(type);
-            console.log(color);
-
+            console.log(typeArray);
+            console.log(colorArray);
 
             const createdEvent = await this.cardClient.createCard(id,name,set,foil,fullArt,quantity,
-                cost,color,type,rarity);
+                cost,colorArray,typeArray,rarity);
 
             // this.dataStore.set("createdEvent",createdEvent);
 
@@ -70,22 +76,6 @@ class AddCardPage extends BaseClass {
             } else {
                 this.errorHandler("Error creating! Try again...")
             }
-
-        }
-
-        async renderExample() {
-    //        let resultArea = document.getElementById("result-info");
-    //
-    //        const example = this.dataStore.get("example");
-    //
-    //        if (example) {
-    //            resultArea.innerHTML = `
-    //                <div>ID: ${example.id}</div>
-    //                <div>Name: ${example.name}</div>
-    //            `
-    //        } else {
-    //            resultArea.innerHTML = "No Item";
-    //        }
         }
 
     handleError(method, error, errorCallback) {
