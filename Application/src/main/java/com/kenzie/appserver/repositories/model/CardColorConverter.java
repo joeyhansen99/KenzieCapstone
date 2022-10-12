@@ -1,7 +1,7 @@
 package com.kenzie.appserver.repositories.model;
+import com.kenzie.appserver.service.model.CardColor;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
-import com.kenzie.appserver.service.model.CardColor;
 
 import java.util.ArrayList;
 import java.util.List;

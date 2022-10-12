@@ -10,8 +10,8 @@ import com.amazonaws.services.dynamodbv2.model.ConditionalCheckFailedException;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import com.google.common.collect.ImmutableMap;
 
-import javax.inject.Inject;
 import java.util.List;
+import javax.inject.Inject;
 
 public class ExampleDao {
     private DynamoDBMapper mapper;

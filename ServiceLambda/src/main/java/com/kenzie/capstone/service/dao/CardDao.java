@@ -1,12 +1,11 @@
 package com.kenzie.capstone.service.dao;
+import com.kenzie.capstone.service.model.CardRecord;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
-import com.kenzie.capstone.service.model.Card;
-import com.kenzie.capstone.service.model.CardRecord;
 
-import javax.inject.Inject;
 import java.util.List;
+import javax.inject.Inject;
 
 public class CardDao {
     private DynamoDBMapper mapper;
@@ -26,14 +25,3 @@ public class CardDao {
         return mapper.scan(CardRecord.class, scanExpression);
     }
 }
-
-/*
-https://stackoverflow.com/questions/31790815/get-all-the-table-items-from-dynamodb-table-using-java-high-level-api
-DyanmoDBScanExpression scanExpression = new DynamoDBScanExpression();
-List<Books> scanResult = mapper.scan(Books.class, scanExpression);
-
-DyanmoDBScanExpression scanExpression = new DynamoDBScanExpression();
-List<Books> scanResult = new ArrayList<Books>(mapper.scan(Books.class, scanExpression));
-
-This will work, it will iterate all the items and then returns a list.
- */

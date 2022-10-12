@@ -6,8 +6,6 @@ import com.kenzie.appserver.controller.model.CreateCardRequest;
 import com.kenzie.appserver.service.CardService;
 import com.kenzie.appserver.service.model.Card;
 
-import com.kenzie.capstone.service.model.ExternalCard;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.UUID.randomUUID;
 
 @RestController
 @RequestMapping("/cards")
@@ -61,7 +57,6 @@ public class CardController {
 
     @GetMapping("/all")
     public ResponseEntity<List<CardResponse>> getAllCards() {
-        System.out.println("backend hit");                      //----JET REMOVE THIS --//
         List<Card> cards = cardService.findAllCards();
 
         if (cards == null || cards.isEmpty()) {
@@ -89,12 +84,6 @@ public class CardController {
         cardService.updateCard(updateRequest);
         CardResponse cardResponse = CardResponse.createCardResponse(cardService.findById(cardId));
         return ResponseEntity.ok(cardResponse);
-    }
-
-    @GetMapping
-    public ResponseEntity<List<CardResponse>> searchExternalApiByName(@PathVariable("searchTerm") String searchTerm) {
-        List<ExternalCard> externalCardList = cardService.returnCardList(searchTerm);
-        return ResponseEntity.ok(CardResponse.externalToResponse(externalCardList));
     }
 
 }
