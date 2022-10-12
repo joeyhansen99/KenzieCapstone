@@ -23,8 +23,15 @@ class CollectionPage extends BaseClass {
 
     async onGetTable() {
         console.log("onGetTableHit");
-        let result = await this.client.getAllCards(this.errorHandler);
-
+        let cardTableData = await this.client.getAllCards(this.errorHandler);
+//        console.log(cardTableData)
+//        if (cardTableData.length > 0) {
+//            $('#collectionDataNo').hide();
+//            console.log('cardTableData = ' + cardTableData)
+//        } else {
+//            console.log("dataNoShow");
+//            $('#collectionDataNo').show();
+//        }
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
@@ -32,15 +39,6 @@ class CollectionPage extends BaseClass {
     async renderTable() {
 //        let cardCollectionTable = document.getElementById('collectionTable').innerHTML;
 //        let cardTableData = await this.cardClient.getAllCards(this.errorHandler);
-//
-//        if (cardTableData.length > 0) {
-//            $('#collectionDataNo').hide();
-//            console.log('cardTableData = ' + cardTableData)
-//        } else {
-//            $('#collectionDataNo').show();
-//        }
-
-//        this.cardDataStore.set('table', cardTableData);
     }
 
 }
