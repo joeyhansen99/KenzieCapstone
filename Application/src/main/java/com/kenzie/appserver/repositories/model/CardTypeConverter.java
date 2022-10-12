@@ -1,7 +1,7 @@
 package com.kenzie.appserver.repositories.model;
+import com.kenzie.appserver.service.model.CardType;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
-import com.kenzie.appserver.service.model.CardType;
 
 import java.util.ArrayList;
 import java.util.List;

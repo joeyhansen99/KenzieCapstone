@@ -1,10 +1,16 @@
 package com.kenzie.appserver.repositories.model;
-import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
-import com.google.common.base.Objects;
 import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConvertedEnum;
+
+import com.google.common.base.Objects;
 
 import java.util.List;
 

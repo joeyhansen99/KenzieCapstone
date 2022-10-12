@@ -2,100 +2,40 @@ package com.kenzie.capstone.service;
 
 import com.kenzie.capstone.service.converter.CardConverter;
 import com.kenzie.capstone.service.dao.CardDao;
-import com.kenzie.capstone.service.dao.ExampleDao;
-import com.kenzie.capstone.service.model.*;
+
+import com.kenzie.capstone.service.model.Card;
+import com.kenzie.capstone.service.model.CardColor;
+import com.kenzie.capstone.service.model.CardRarity;
+import com.kenzie.capstone.service.model.CardRecord;
+import com.kenzie.capstone.service.model.CardType;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class LambdaServiceTest {
 
-    /** ------------------------------------------------------------------------
-     *  expenseService.getExpenseById
-     *  ------------------------------------------------------------------------ **/
-
-    private ExampleDao exampleDao;
     private CardDao cardDao;
     private LambdaService lambdaService;
 
     @BeforeAll
     void setup() {
-        this.exampleDao = mock(ExampleDao.class);
-        //this.lambdaService = new LambdaService(exampleDao);
         this.cardDao = mock(CardDao.class);
         this.lambdaService = new LambdaService(cardDao);
     }
 
     @Test
-    void setDataTest() {
-        ArgumentCaptor<String> idCaptor = ArgumentCaptor.forClass(String.class);
-        ArgumentCaptor<String> dataCaptor = ArgumentCaptor.forClass(String.class);
-
-        // GIVEN
-        String data = "somedata";
-
-        // WHEN
-        ExampleData response = this.lambdaService.setExampleData(data);
-
-        // THEN
-        verify(exampleDao, times(1)).setExampleData(idCaptor.capture(), dataCaptor.capture());
-
-        assertNotNull(idCaptor.getValue(), "An ID is generated");
-        assertEquals(data, dataCaptor.getValue(), "The data is saved");
-
-        assertNotNull(response, "A response is returned");
-        assertEquals(idCaptor.getValue(), response.getId(), "The response id should match");
-        assertEquals(data, response.getData(), "The response data should match");
-    }
-
-    @Test
-    void getDataTest() {
-        ArgumentCaptor<String> idCaptor = ArgumentCaptor.forClass(String.class);
-
-        // GIVEN
-        String id = "fakeid";
-        String data = "somedata";
-        ExampleRecord record = new ExampleRecord();
-        record.setId(id);
-        record.setData(data);
-
-
-        when(exampleDao.getExampleData(id)).thenReturn(Arrays.asList(record));
-
-        // WHEN
-        ExampleData response = this.lambdaService.getExampleData(id);
-
-        // THEN
-        verify(exampleDao, times(1)).getExampleData(idCaptor.capture());
-
-        assertEquals(id, idCaptor.getValue(), "The correct id is used");
-
-        assertNotNull(response, "A response is returned");
-        assertEquals(id, response.getId(), "The response id should match");
-        assertEquals(data, response.getData(), "The response data should match");
-    }
-
-    // Write additional tests here
-    /** ------------------------------------------------------------------------
-     *  lambdaService.getAllCards
-     *  ------------------------------------------------------------------------ **/
-    @Test
-    void getAllCards_Successful() {
+    void getAllCards() {
         List<CardRecord> cardRecordList = new ArrayList<>();
         List<Card> expected = new ArrayList<>();
 

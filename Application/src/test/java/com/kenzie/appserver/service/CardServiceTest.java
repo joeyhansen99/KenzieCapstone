@@ -9,8 +9,6 @@ import com.kenzie.appserver.service.model.CardColor;
 import com.kenzie.appserver.service.model.CardRarity;
 import com.kenzie.appserver.service.model.CardType;
 
-import com.kenzie.capstone.service.client.LambdaServiceClient;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,8 +43,7 @@ public class CardServiceTest {
     void setup() {
         cardRepository = mock(CardRepository.class);
         cacheStore = mock(CacheStore.class);
-        LambdaServiceClient lambdaServiceClient = mock(LambdaServiceClient.class);
-        cardService = new CardService(cardRepository, cacheStore, lambdaServiceClient);
+        cardService = new CardService(cardRepository, cacheStore);
     }
 
     @BeforeEach
