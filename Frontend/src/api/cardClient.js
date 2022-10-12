@@ -5,7 +5,7 @@ export default class CardClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getAllCards', 'createCard', 'updateCard', 'getCard', 'deleteCard'];
+        const methodsToBind = ['clientLoaded', 'getCard', 'createCard', 'updateCard', 'deleteCard', 'getAllCards'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -57,7 +57,7 @@ export default class CardClient extends BaseClass {
     }
 
 
-    async updateCard(id, foil, fullArt, quantity) {
+    async updateCard(id, foil, fullArt, quantity, errorCallback) {
         try {
             const response = await this.client.patch(`/cards/${id}`, {
                 foil: `${foil}`,
