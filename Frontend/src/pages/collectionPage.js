@@ -22,7 +22,6 @@ class CollectionPage extends BaseClass {
 
     async onGetTable() {
         console.log("onGetTableHit");
-//        let cardCollectionTable = document.getElementById('collectionTable').innerHTML='';
         let cardTableData = await this.client.getAllCards(this.errorHandler);
 
         console.log(cardTableData);
@@ -54,14 +53,6 @@ class CollectionPage extends BaseClass {
             $('#collectionDataNo').show();
         }
     }
-
-    // Render Methods --------------------------------------------------------------------------------------------------
-    //displays the information
-    async renderTable(data) {
-//        let cardCollectionTable = document.getElementById('collectionTable').innerHTML;
-//        let cardTableData = await this.cardClient.getAllCards(this.errorHandler);
-
-}
 
 /**
  * Main method to run when the page contents have loaded.
