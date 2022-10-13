@@ -9,8 +9,8 @@ module.exports = {
   },
   entry: {
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
-    collectionPage: path.resolve(__dirname, 'src', 'pages', 'collectionPage.js'),
-    addCardPage: path.resolve(__dirname, 'src', 'pages', 'addcardPage.js')
+//    collectionPage: path.resolve(__dirname, 'src', 'pages', 'collectionPage.js'),
+//    addCardPage: path.resolve(__dirname, 'src', 'pages', 'addCardPage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -21,7 +21,7 @@ module.exports = {
     port: 8080,
     open: true,
     openPage: 'http://localhost:8080/index.html',
-    // diableHostChecks, otherwise we get an error about headers and the page won't render
+    // disableHostChecks, otherwise we get an error about headers and the page won't render
     disableHostCheck: true,
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
@@ -47,7 +47,7 @@ module.exports = {
       inject: false
     }),
     new HtmlWebpackPlugin({
-      template: './src/addcard.html',
+      template: './src/addCard.html',
       filename: 'addCard.html',
       inject: false
     }),

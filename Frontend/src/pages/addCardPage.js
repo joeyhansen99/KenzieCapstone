@@ -72,7 +72,7 @@ class AddCardPage extends BaseClass {
 
             if (createdEvent) {
                 this.showMessage('Card was added to your collection.')
-//                this.showMessage(`Created ${createdCard.id}!`)
+//                this.showMessage(`Created ${createdCard.name}!`)
             } else {
                 this.errorHandler("Error creating! Try again...")
             }
@@ -89,14 +89,11 @@ class AddCardPage extends BaseClass {
     }
 }
 
-
 const main = async () => {
     console.log("made it to run method");
     const addCardPage = new AddCardPage();
     console.log("about to hit mount");
     addCardPage.mount();
 };
-
-
 
 window.addEventListener('DOMContentLoaded', main);
