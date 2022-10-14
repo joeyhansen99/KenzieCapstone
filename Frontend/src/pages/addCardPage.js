@@ -71,8 +71,9 @@ class AddCardPage extends BaseClass {
             // this.dataStore.set("createdEvent",createdEvent);
 
             if (createdEvent) {
-                this.showMessage('Card was added to your collection.')
+//                this.showMessage('Card was added to your collection.')
 //                this.showMessage(`Created ${createdCard.name}!`)
+                this.showMessage(name + ' was added to your collection.')
             } else {
                 this.errorHandler("Error creating! Try again...")
             }

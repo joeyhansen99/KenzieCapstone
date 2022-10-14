@@ -9,8 +9,8 @@ module.exports = {
   },
   entry: {
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
-//    collectionPage: path.resolve(__dirname, 'src', 'pages', 'collectionPage.js'),
-//    addCardPage: path.resolve(__dirname, 'src', 'pages', 'addCardPage.js')
+    collectionPage: path.resolve(__dirname, 'src', 'pages', 'collectionPage.js'),
+    addCardPage: path.resolve(__dirname, 'src', 'pages', 'addCardPage.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

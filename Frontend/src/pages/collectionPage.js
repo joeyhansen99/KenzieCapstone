@@ -53,12 +53,12 @@ class CollectionPage extends BaseClass {
             $('#collectionDataNo').show();
         }
     }
-
+}
 /**
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    console.log("made it to run method");
+//    console.log("made it to run method");
     const collectionPage = new CollectionPage();
     console.log("about to hit mount");
     await collectionPage.mount();
