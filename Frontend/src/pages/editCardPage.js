@@ -2,7 +2,7 @@ import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
 import CardClient from "../api/cardClient";
 
-class CollectionPage extends BaseClass {
+class EditCardPage extends BaseClass {
 
     constructor() {
         console.log("CONSTRUCTOR");
@@ -28,15 +28,14 @@ class CollectionPage extends BaseClass {
 
     // Render Table Method ---------------------------------------------------------------------------------------------
     async renderTable(cardTableData) {
-        let rows = cardTableData.length;
-        if (rows > 0) {
-            $(`#collectionTable`).show();
-            $(`#collectionDataNo`).hide();
-            console.log('cardTableData length = ' + cardTableData.length);
+        if (cardTableData.length > 0) {
+            $(`#editCardTable`).show();
+            $(`#editCardDataNo`).hide();
+            console.log('cardTableData = ' + cardTableData);
             let rowNum = 0;
             for(var i = 0; i < cardTableData.length; i++) {
                 rowNum++;
-                $(`#collectionDataYes`).append(`
+                $(`#editCardDataYes`).append(`
                     <tr style="cursor: pointer;">
                     <td>${rowNum}</td>
                     <td>${cardTableData[i].set}</td>
@@ -53,7 +52,7 @@ class CollectionPage extends BaseClass {
             }
         } else {
             console.log("dataNoShow");
-            $(`#collectionDataNo`).show();
+            $(`#editCardDataNo`).show();
         }
     }
 }
@@ -63,9 +62,9 @@ class CollectionPage extends BaseClass {
  */
 const main = async () => {
 //    console.log("made it to run method");
-    const collectionPage = new CollectionPage();
+    const editCardPage = new EditCardPage();
     console.log("about to hit mount");
-    await collectionPage.mount();
+    await editCardPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

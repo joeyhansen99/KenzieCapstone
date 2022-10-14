@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>AddCardHtml</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -84,7 +84,19 @@
                 Quantity <input id="cardQuantityInput" type="number" min="0" placeholder="Enter quantity owned" /><br>
 
                 <input type="submit" name="save">
+                <input type="button" value="Clear" onclick="clearForm()">
             </form>
         </div>
     </body>
+
+    <script> function clearForm() {
+        window.location.reload();
+        return false;
+    }
+    </script>
+    <script>
+    function cardAddedAlert(name) {
+        alert ("Your card (" + name + ") has been added!");
+    }
+    </script>
 </html>

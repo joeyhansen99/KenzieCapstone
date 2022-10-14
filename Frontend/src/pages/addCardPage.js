@@ -73,7 +73,9 @@ class AddCardPage extends BaseClass {
             if (createdEvent) {
 //                this.showMessage('Card was added to your collection.')
 //                this.showMessage(`Created ${createdCard.name}!`)
-                this.showMessage(name + ' was added to your collection.')
+//                this.showMessage(name + ' was added to your collection.')
+                cardAddedAlert(name);
+                location.reload();
             } else {
                 this.errorHandler("Error creating! Try again...")
             }
