@@ -180,7 +180,7 @@
     font-weight: bold;
     letter-spacing: 1px;
     margin-right: 100px;
-    padding: 5px 50px;
+    padding: 5px 5px;
     text-decoration: none;
     text-transform: uppercase;
     transition: .3s linear;
@@ -340,6 +340,153 @@
     color: #061854;
 }
 
+/* -------- EditCard Page Styling -------- */
+ #editCardPage {
+    background-color: #000000;
+    background-image: url('../images/CapstoneBg10.jpg');
+    background-size: cover;
+    color: #ffffff;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.editCardHero {
+    box-sizing: border-box;
+    height: 90px;
+    margin: 0;
+    padding: 0;
+}
+
+.editCardNavMenu {
+    background-color: #051341;
+    box-shadow: 2px 2px  #6db6ed;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+.editCardNavLogo {
+    cursor: pointer;
+    font-size: 35px;
+    font-weight: 900;
+    line-height: 30px;
+    margin-right: 20px;
+    padding: 5px 15px;
+    text-shadow: 2.5px 3px #3762af;
+}
+
+.editCardNavMenuItems {
+    display: flex;
+    list-style: none;
+    margin: auto 0;
+}
+
+.editCardNavMenuItems li {
+    display: flex;
+    list-style: none;
+    margin: auto 0;
+}
+
+.editCardNavMenuItems li a {
+    border-radius: 30px;
+    color: #ddd;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-right: 100px;
+    padding: 5px 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: .3s linear;
+}
+
+.editCardNavMenuItems li a:hover{
+    background: #6db6ed;
+    color: #051341;
+    transform: scale(1.1);
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+/* -------- EditCard Table Styling -------- */
+.editCard-OuterWrapper {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    border: 2px solid #6DB6ED;
+    box-shadow: 0px 0px 20px #4472C4;
+    height: 750px;
+    justify-content: center;
+    margin-left: 150px;
+    margin-top: 30px;
+    /*max-width: fit-content;*/
+    padding: 10px;
+    position: absolute;
+    /*width: 100%;*/
+    width: 1600px;
+}
+
+.editCard-TableWrapper {
+    display: flex;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    height: 700px;
+    justify-content: center;
+    margin: 20px;
+    margin-left: 35px;
+    overflow-y: scroll;
+    max-width: fit-content;
+    min-width: max-content;
+}
+
+.editCard {
+    border-collapse: separate;
+    border-spacing: 0px;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    /*max-width: max-content;*/
+    width: 1500px;
+}
+
+.editCard th {
+    background-color: #051341;
+    color: #ffffff;
+    font-size: 1.1em;
+    position: sticky;
+    text-transform: uppercase;
+    top: 0px;
+}
+
+.editCard th,
+.mainCollection td {
+    border: 1px solid #ffffff;
+    padding: 6px 15px;
+    min-width: max-content;
+}
+
+.editCard tbody tr {
+    background-color: #E9EBF5;
+    color: #000000;
+}
+
+.editCard tbody tr:nth-of-type(even) {
+    background-color: #CFD5EA;
+    color: #000000;
+}
+
 /* -------- AddCard Page Styling -------- */
  #addCardPage {
     background-color: #000000;
@@ -458,3 +605,5 @@
 }
 
 /* -------- AddCard Table Styling -------- */
+
+

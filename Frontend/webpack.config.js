@@ -11,6 +11,7 @@ module.exports = {
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
     collectionPage: path.resolve(__dirname, 'src', 'pages', 'collectionPage.js'),
     addCardPage: path.resolve(__dirname, 'src', 'pages', 'addCardPage.js'),
+    editCardPage: path.resolve(__dirname, 'src', 'pages', 'editCardPage.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -51,6 +52,11 @@ module.exports = {
       filename: 'addCard.html',
       inject: false
     }),
+    new HtmlWebpackPlugin({
+          template: './src/editCard.html',
+          filename: 'editCard.html',
+          inject: false
+        }),
     new CopyPlugin({
       patterns: [
         {
