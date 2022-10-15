@@ -10,6 +10,7 @@ class CollectionPage extends BaseClass {
     }
 
     async mount() {
+        event.preventDefault();
         console.log("Hit the mount");
         this.client = new CardClient();
         this.onGetTable();
@@ -19,19 +20,21 @@ class CollectionPage extends BaseClass {
     }
 
     async onGetTable() {
+        event.preventDefault();
         console.log("onGetTableHit");
         let cardTableData = await this.client.getAllCards(this.errorHandler);
         this.renderTable(cardTableData);
     }
 
     async onDeleteCard(event, cardTableData) {
+        event.preventDefault();
         let deleteCardSelection = document.getElementById("deleteInput").value;
         console.log("delete card selection = " + deleteCardSelection);
         cardTableData = await this.client.getAllCards();
         console.log("card table data = " + cardTableData);
         console.log("card table data length = " + cardTableData.length);
         if (deleteCardSelection <= cardTableData.length) {
-            this.client.deleteCard(cardTableData[deleteCardSelection - 1].id);
+            await this.client.deleteCard(cardTableData[deleteCardSelection - 1].id);
             cardDeletedAlert(deleteCardSelection);
             location.reload();
             console.log("delete card function successful");
@@ -41,6 +44,7 @@ class CollectionPage extends BaseClass {
     }
 
     async onEditCard(event, cardTableData) {
+        event.preventDefault();
         let editCardSelection = document.getElementById("editInput").value;
         console.log("updating row " + editCardSelection);
         cardTableData = await this.client.getAllCards();
@@ -51,7 +55,7 @@ class CollectionPage extends BaseClass {
         console.log(document.getElementById("quantityInput").value);
         console.log("get card = " + cardTableData[editCardSelection - 1]);
         if (editCardSelection <= cardTableData.length) {
-            this.client.updateCard(cardTableData[editCardSelection - 1].id,
+            await this.client.updateCard(cardTableData[editCardSelection - 1].id,
                 document.getElementById("editFoilSelect").value,
                 document.getElementById("editFullArtSelect").value,
                 document.getElementById("quantityInput").value);
@@ -64,10 +68,11 @@ class CollectionPage extends BaseClass {
     }
 
     async onDeleteAllCards(event, cardTableData) {
+        event.preventDefault();
         if (confirm("This will delete ALL cards in the collection. Are you sure?") == true) {
             cardTableData = await this.client.getAllCards();
             for (let i = 0; i < cardTableData.length; i++) {
-                this.client.deleteCard(cardTableData[i].id);
+                await this.client.deleteCard(cardTableData[i].id);
             }
             allCardsDeletedAlert();
             location.reload();
@@ -75,6 +80,7 @@ class CollectionPage extends BaseClass {
     }
 
     async renderTable(cardTableData) {
+        event.preventDefault();
         let rows = cardTableData.length;
         if (rows > 0) {
             $(`#collectionTable`).show();
