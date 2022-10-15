@@ -203,6 +203,8 @@
 }
 
 /* -------- Collection Table Styling -------- */
+
+/* ---- Collection Column Headers Styling --- */
 .mainCollection-OuterWrapper {
     background-color: rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -225,7 +227,7 @@
     height: 700px;
     justify-content: center;
     margin: 20px;
-    margin-left: 35px;
+    margin-left: 30px;
     overflow-y: scroll;
     max-width: fit-content;
     min-width: max-content;
@@ -240,6 +242,12 @@
     font-size: 16px;
     /*max-width: max-content;*/
     width: 1500px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: #eee;
 }
 
 .mainCollection th {
@@ -272,6 +280,80 @@
     background-color: #CFD5EA;
     color: #000000;
 }
+
+/* ---- Collection Action Headers Styling --- */
+.actionHeadersRow th {
+    background-color: #051341;
+    color: #ffffff;
+    font-size: 0.9em;
+    position: sticky;
+    text-transform: uppercase;
+    top: 0px;
+}
+
+.actionHeaderInputBox {
+    flex: 1;
+    margin: auto 0;
+    position: relative;
+}
+
+.actionHeaderInputBox form button {
+    background: #051341;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: scale(0.9);
+    width: 30px;
+}
+
+.actionHeaderInputBox input {
+    background: #6DB6ED;
+    border-radius: 30px;
+    border: none;
+    color: #051341;
+    font-size: 14px;
+    height: 30px;
+    outline: none;
+    text-align: center;
+    width: 100%;
+}
+
+.actionHeaderInputBox form button i {
+    color: #6db6ed;
+    cursor: pointer;
+}
+
+.actionHeaderInputBox form input::placeholder {
+    color: rgba(5, 19, 65, 0.5);
+    cursor: pointer;
+}
+
+.formSelect {
+    background: #6DB6ED;
+    border-radius: 30px;
+    border: none;
+    color: rgba(5, 19, 65, 0.5);
+    font-size: 14px;
+    height: 30px;
+    outline: none;
+    text-align: center;
+    width: 100%;
+}
+
+.formSelect:focus-visible {
+    background: #051341;
+    color: #6DB6ED;
+}
+
+.formSelect:focus:not(:focus-visible) {
+     background: #6DB6ED;
+     color: rgba(5, 19, 65, 0.5);
+}
+
 /* -------- Collection Table Button Styling -------- */
 .mainCollection button {
     background-color: #E9EBF5;
@@ -335,7 +417,7 @@
 }
 
 /* -------- Collection Table Sort Styling -------- */
-.mainCollection th:hover {
+.mainCollection #collectionTableHeader th:hover {
     background: #6DB6ED;
     color: #061854;
 }
@@ -429,13 +511,13 @@
     box-shadow: 0px 0px 20px #4472C4;
     height: 750px;
     justify-content: center;
-    margin-left: 150px;
+    margin-left: 100px;
     margin-top: 30px;
     /*max-width: fit-content;*/
     padding: 10px;
     position: absolute;
     /*width: 100%;*/
-    width: 1600px;
+    width: 1700px;
 }
 
 .editCard-TableWrapper {
@@ -444,7 +526,7 @@
     height: 700px;
     justify-content: center;
     margin: 20px;
-    margin-left: 35px;
+    margin-left: 20px;
     overflow-y: scroll;
     max-width: fit-content;
     min-width: max-content;
@@ -485,6 +567,46 @@
 .editCard tbody tr:nth-of-type(even) {
     background-color: #CFD5EA;
     color: #000000;
+}
+
+/* ------ EditCard Action Buttons Styling --- */
+.editCardSearchBox {
+    flex: 1;
+    margin-left: 1550px;
+    margin-bottom: 500px;
+    position: top;
+
+}
+
+.editCardSearchBox button {
+    background: #051341;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    position: top;
+    margin-bottom: 500px;
+    right: 0;
+    top: 0;
+    transform: scale(0.9);
+    width: 40px;
+}
+
+.editCardSearchBox input {
+    background: #6DB6ED;
+    border-radius: 30px;
+    border: none;
+    color: #051341;
+    font-size: 16px;
+    height: 40px;
+    outline: none;
+    text-align: center;
+    width: 150px;
+}
+
+.editCardSearchBox i {
+    color: #6db6ed;
+    cursor: pointer;
 }
 
 /* -------- AddCard Page Styling -------- */
@@ -604,6 +726,320 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
-/* -------- AddCard Table Styling -------- */
+/* -------- AddCard Form Styling -------- */
+.addCardLowerBody {
+    box-sizing: border-box;
+    display: flex;
+    height: 100vh;
+    justify-content:center;
+    align-items: center;
+    padding: 10px;
+}
+
+.addCardForm-outerWrapper {
+    background-image: url('../images/5701-island.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 30px;
+    border: 2px solid #6DB6ED;
+    box-shadow: 0px 0px 30px #4472C4;
+    height: 750px;
+    justify-content: flex;
+    margin: auto;
+    margin-top: 30px;
+    padding: 0px 0px 0px 0px;
+}
+
+.addCardForm-innerWrapper {
+    background-color: rgba(10,10,10,0.60);
+    border-radius: 30px;
+    height: 750px;
+    margin: auto;
+    position: flex;
+    width: 700px;
+}
+
+.addCardBorder {
+    padding: 25px 30px 25px 30px;
+    max-width: 625px;
+    width: 100%;
+}
+
+/* -------- AddCard Form Title Styling -------- */
+.container .heading {
+    font-size: 35px;
+    font-weight: 900;
+    position: relative;
+    text-align: center;
+    text-shadow: 2.5px 3px #3762af;
+    text-transform: uppercase;
+    padding: 0 0 20px 0;
+}
+
+/*.container .heading::before {
+    content: ' ';
+    position: absolute;
+    height: 3px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(135dg, #6DB6ED, #051341)
+}*/
+
+/* -------- AddCard Form Top Two Rows Styling -------- */
+.container form .card-details {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form .card-details .card-box {
+    width: calc(100% / 2 - 20px);
+    margin-bottom: 15px;
+}
+
+.card-details .card-box .details {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-shadow: 3px 3px #051341;
+    text-transform: uppercase;
+}
+
+.card-details .card-box input {
+    height: 35px;
+    width: 100%;
+    outline: none;
+    border-radius: 20px;
+    border: 1px solid #6DB6ED;
+    box-shadow: 0px 0px 30px #4472C4;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.card-details .card-box input:focus,
+.card-details .card-box input:valid {
+    border-color: #4472C4;
+}
+
+/* -------- AddCard Form CheckBox Styling -------- */
+.container form .addCardFormColorRow {
+    border-radius: 20px;
+    background-color: rgba(92, 114, 153, 0.40);
+    border: 1px solid #6DB6ED;
+    box-shadow: 0px 0px 30px #4472C4;
+    border-bottom-width: 2px;
+    padding: 10px;
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.container form .addCardFormColorRow .title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    padding-top: 5px;
+    text-shadow: 2px 2px #051341;
+    text-transform: uppercase;
+}
+
+.container form .addCardFormColorRow .title a {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    text-shadow: 2px 2px #051341;
+    text-transform: uppercase;
+}
+
+/* -------- AddCard Form Color CheckBox Styling -------- */
+.container form .addCardFormTypeRows {
+    border-radius: 20px;
+    background-color: rgba(92, 114, 153, 0.40);
+    border: 1px solid #6DB6ED;
+    box-shadow: 0px 0px 30px #4472C4;
+    border-bottom-width: 2px;
+    padding: 10px;
+    padding-left: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.container form .addCardFormTypeRows .title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    padding-top: 5px;
+    text-shadow: 2px 2px #051341;
+    text-transform: uppercase;
+}
+
+.container form .addCardFormTypeRows .title a {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    text-shadow: 2px 2px #051341;
+    text-transform: uppercase;
+}
 
 
+/* -------- AddCard Form Editable Card Details Styling -------- */
+
+.cardEditableDetails .cardEditableDetails-box .details-title {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-shadow: 3px 3px #051341;
+    text-transform: uppercase;
+}
+
+.cardEditableDetails .cardEditableDetails-box .cardEditableFormSelect {
+    height: 35px;
+    width: 100%;
+    outline: none;
+    border-radius: 20px;
+    border: 1px solid #6DB6ED;
+    box-shadow: 0px 0px 30px #4472C4;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.container form .radioForm-container {
+    margin-top: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container form .radioForm-container .radio-form {
+    width: calc(100% / 2 - 10px);
+    height: 100px;
+    outline: none;
+    border-radius: 20px;
+    border: 1px solid #6DB6ED;
+    box-shadow: 0px 0px 30px #4472C4;
+    border-bottom-width: 2px;
+    background-color: rgba(60, 98, 166, 1);
+    /*border-radius: 30px;*/
+}
+
+form .radio-form .radio-title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    margin-bottom: 5px;
+    padding-left: 20px;
+    padding-top: 5px;
+    text-shadow: 2px 2px #051341;
+    text-transform: uppercase;
+}
+
+form .radio-form .category {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 5px;
+}
+
+.container form .cardEditableDetails {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container form .cardEditableDetails .cardEditableDetails-box {
+    width: calc(100% / 2 - 10px);
+    margin-bottom: 15px;
+}
+
+/* -------- AddCard Action Buttons Row -------- */
+.addCardFormEighthRow .formBtn {
+    text-align: center;
+}
+
+.container form .action-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.container form .action-buttons .addCardFormEighthRow-box {
+    width: calc(75% / 2 - 20px);
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.action-buttons .button {
+    border-bottom-width: 2px;
+    border-radius: 20px;
+    border: 1px solid #6DB6ED;
+    box-shadow: 0px 0px 20px #4472C4;
+    color: rgba(5, 19, 65, 0.75);
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    height: 35px;
+    margin-bottom: 5px;
+    outline: none;
+    padding-left: 0;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.action-buttons .button:hover {
+    transform: scale(1.1);
+}
+
+/*:root {
+     --clr-accent-bg: #000000
+        --clr-accent-drkBlue: #051341
+        --clr-accent-medBlue: #4472C4
+        --clr-accent-lgtBlue: #6DB6ED
+        --clr-accent-graphDrkBlue: #061854
+        --clr-accent-graphMedBlue: #CFD5EA
+        --clr-accent-graphLgtBlue: #E9EBF5
+        --clr-accent-ltrLgt: #000000
+        --clr-accent-ltrDark: #051341
+} */

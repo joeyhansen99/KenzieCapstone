@@ -30,8 +30,9 @@
                     <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
                     <li><a href="collection.html"><i class="fas fa-archive"></i> Collection</a></li>
                     <li><a href="addCard.html"><i class="fas fa-plus-square"></i> Add Card</a></li>
-                    <li><a href="editCard.html"><i class="fas fa-edit"></i> Edit Card</a></li>
-                    <li><a href="#"><i class="fas fa-trash"></i> Delete Card</a></li>
+<!--                    <li><a href="editCard.html"><i class="fas fa-edit"></i> Edit Card</a></li>-->
+                    <li><form class="card-content" id="delete-all-cards-form"><button type="submit">
+                        <i class="fas fa-trash"></i> Delete All</button></form></li>
                 </ul>
             </nav>
         </div>
@@ -40,8 +41,57 @@
             <div class="mainCollection-TableWrapper">
                 <table id="collectionTable" class="mainCollection table-sortable">
                     <thead>
+                        <tr id="actionHeadersRow" class="actionHeaders">
+                            <th colspan="4" class="actionHeaders" id="deleteCard">
+                                <div class="actionHeaderInputBox">
+                                    <form action="">
+                                        <button id="deleteButton" type="submit"><i class="fas fa-trash"></i></button>
+                                        <input type="number" id="deleteInput" min="1" onClick="deleteCard()"
+                                               placeholder="Enter line # to delete">
+                                    </form>
+                                </div>
+                            </th>
+                            <th colspan="3" class="actionHeaders" id="editCard">
+                                <div class="actionHeaderInputBox">
+                                    <form action="">
+                                        <button id="editButton" type="submit"><i class="fas fa-edit"></i></button>
+                                        <input type="number" id="editInput" min="1" onClick="editCard()"
+                                               placeholder="Enter line # to edit">
+                                    </form>
+                                </div>
+                            </th>
+                            <th class="actionHeaders" id="editFoil">
+                                <div class="actionHeaderInputBox">
+                                    <select id="editFoilSelect" class="formSelect">
+                                        <option value="Select..." selected>Select...</option>
+                                        <option value="true">true</option>
+                                        <option value="false">false</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th class="actionHeaders" id="editFullArt">
+                                <div class="actionHeaderInputBox">
+                                    <select id="editFullArtSelect" class="formSelect">
+                                        <option value="Select..." selected>Select...</option>
+                                        <option value="true">true</option>
+                                        <option value="false">false</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th class="actionHeaders" id="editQtyInput">
+                                <div class="actionHeaderInputBox">
+                                    <form action="">
+<!--                                        <button id="editButton" type="submit"><i class="fas fa-edit"></i></button>-->
+                                        <input type="number" id="editQty" min="0" placeholder="Enter new quantity">
+                                    </form>
+                                </div>
+<!--                                <div class="actionHeaderInputBox">-->
+<!--                                    <input type="number" min="0" placeholder="enter new quantity">-->
+<!--                                </div>-->
+                            </th>
+                        </tr>
                         <tr id="collectionTableHeader">
-                            <th>Row </th>
+                            <th> </th>
                             <th>Set <i class="fas fa-sort-asc"></i></th>
                             <th>Name <i class="fas fa-sort-asc"></i></th>
                             <th>CMC <i class="fas fa-sort-asc"></i></th>
@@ -60,6 +110,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="editBtns" class="actionBtns">
+
+                </div>
             </div>
         </div>
     </body>
