@@ -134,4 +134,19 @@ public class CreateCardRequest {
         this.rarity = rarity;
     }
 
+    @Override
+    public String toString() {
+        return "CreateCardRequest{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", set='" + set + '\'' +
+                ", foil=" + foil +
+                ", fullArt=" + fullArt +
+                ", quantity=" + quantity +
+                ", cost=" + cost +
+                ", color=" + color +
+                ", type=" + type +
+                ", rarity=" + rarity +
+                '}';
+    }
 }

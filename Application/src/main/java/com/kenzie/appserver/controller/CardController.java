@@ -46,6 +46,8 @@ public class CardController {
                 createCardRequest.getId(),
                 createCardRequest.getName(),
                 createCardRequest.getSet(),
+                createCardRequest.isFoil(),
+                createCardRequest.isFullArt(),
                 createCardRequest.getQuantity(),
                 createCardRequest.getCost(),
                 createCardRequest.getCardColor(),
@@ -80,7 +82,6 @@ public class CardController {
     @PatchMapping("/{cardId}")
     public ResponseEntity<CardResponse> updateCardById(@RequestBody CardUpdateRequest updateRequest,
                                                        @PathVariable("cardId") String cardId) {
-
         cardService.updateCard(updateRequest);
         CardResponse cardResponse = CardResponse.createCardResponse(cardService.findById(cardId));
         return ResponseEntity.ok(cardResponse);
