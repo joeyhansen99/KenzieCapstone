@@ -93,8 +93,9 @@ public class CardService {
         List<Card> cards = new ArrayList<>();
         Iterable<CardRecord> cardRecordIterable = cardRepository.findAll();
         for (CardRecord record : cardRecordIterable) {
-            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.getQuantity(),
-                    record.getCost(), record.getCardColor(), record.getCardType(), record.getCardRarity()));
+            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.isFoil(), record.isFullArt(),
+                    record.getQuantity(), record.getCost(), record.getCardColor(), record.getCardType(),
+                    record.getCardRarity()));
         }
         return cards;
     }

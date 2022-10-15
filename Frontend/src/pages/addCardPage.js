@@ -1,15 +1,11 @@
 import BaseClass from '../util/baseClass';
-import DataStore from "../util/DataStore";
 import CardClient from "../api/cardClient";
-
 
 class AddCardPage extends BaseClass {
     constructor() {
         super();
         this.bindClassMethods(['onCreateCard'], this);
-//        this.cardDataStore = new DataStore();
     }
-
 
     async mount() {
         document.getElementById('addCardForm').addEventListener('submit', this.onCreateCard);
@@ -42,7 +38,7 @@ class AddCardPage extends BaseClass {
                 typeArray.push(type[i].value)
             }
 
-            let rarity = document.getElementById("addCardRarity").value;
+            let rarity = document.getElementById("addRaritySelect").value;
 
             if (document.getElementById('foilTrue').checked) {
                 foil = true;
@@ -51,8 +47,8 @@ class AddCardPage extends BaseClass {
                 fullArt = true;
             }
 
-            let quantity = document.getElementById("cardQuantityInput").value;
-            let id = quantity + cost + "-" + set + "-EN";
+            let quantity = document.getElementById("cardQtyInput").value;
+            let id = crypto.randomUUID();
 
             console.log(id);
             console.log(set);
@@ -64,16 +60,13 @@ class AddCardPage extends BaseClass {
             console.log(quantity);
             console.log(typeArray);
             console.log(colorArray);
-
+            // creates a card (if one exists) that shares the ID
+            const cardEvent = await this.cardClient.getCard(id);
+            // creates a new card with data from user
             const createdEvent = await this.cardClient.createCard(id,name,set,foil,fullArt,quantity,
                 cost,colorArray,typeArray,rarity);
 
-            // this.dataStore.set("createdEvent",createdEvent);
-
-            if (createdEvent) {
-//                this.showMessage('Card was added to your collection.')
-//                this.showMessage(`Created ${createdCard.name}!`)
-//                this.showMessage(name + ' was added to your collection.')
+            if ((createdEvent) && (cardEvent == null)) {
                 cardAddedAlert(name);
                 location.reload();
             } else {
