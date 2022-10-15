@@ -26,12 +26,21 @@ public class CardService {
     }
 
     public Card findById(String id) {
-        return cardRepository
-                .findById(id)
-                .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.isFoil(), card.isFullArt(),
-                        card.getQuantity(), card.getCost(), card.getCardColor(), card.getCardType(),
-                        card.getCardRarity()))
-                .orElse(null);
+        Card result;
+        if (cache.get(id) != null) {
+            return cache.get(id);
+        }
+        if (cardRepository.existsById(id)) {
+            result = cardRepository
+                    .findById(id)
+                    .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.isFoil(), card.isFullArt(),
+                            card.getQuantity(), card.getCost(), card.getCardColor(), card.getCardType(),
+                            card.getCardRarity()))
+                    .orElse(null);
+            cache.add(id, result);
+            return result;
+        }
+        return null;
     }
 
     public Card addNewCard(Card card) {
@@ -84,8 +93,9 @@ public class CardService {
         List<Card> cards = new ArrayList<>();
         Iterable<CardRecord> cardRecordIterable = cardRepository.findAll();
         for (CardRecord record : cardRecordIterable) {
-            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.getQuantity(),
-                    record.getCost(), record.getCardColor(), record.getCardType(), record.getCardRarity()));
+            cards.add(new Card(record.getId(), record.getName(), record.getSet(), record.isFoil(), record.isFullArt(),
+                    record.getQuantity(), record.getCost(), record.getCardColor(), record.getCardType(),
+                    record.getCardRarity()));
         }
         return cards;
     }

@@ -54,4 +54,13 @@ public class CardUpdateRequest {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "CardUpdateRequest{" +
+                "id='" + id + '\'' +
+                ", foil=" + foil +
+                ", fullArt=" + fullArt +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
