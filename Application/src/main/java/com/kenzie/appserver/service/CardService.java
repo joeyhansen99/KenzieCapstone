@@ -27,20 +27,20 @@ public class CardService {
 
     public Card findById(String id) {
         Card result;
-        try {
-            result = cache.get(id);
-            return result;
-        } catch (NullPointerException e) {
-            System.out.println("Card not in cache - continuing...");
+        if (cache.get(id) != null) {
+            return cache.get(id);
         }
-        result = cardRepository
-                .findById(id)
-                .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.isFoil(), card.isFullArt(),
-                        card.getQuantity(), card.getCost(), card.getCardColor(), card.getCardType(),
-                        card.getCardRarity()))
-                .orElse(null);
-        cache.add(id, result);
-        return result;
+        if (cardRepository.existsById(id)) {
+            result = cardRepository
+                    .findById(id)
+                    .map(card -> new Card(card.getId(), card.getName(), card.getSet(), card.isFoil(), card.isFullArt(),
+                            card.getQuantity(), card.getCost(), card.getCardColor(), card.getCardType(),
+                            card.getCardRarity()))
+                    .orElse(null);
+            cache.add(id, result);
+            return result;
+        }
+        return null;
     }
 
     public Card addNewCard(Card card) {

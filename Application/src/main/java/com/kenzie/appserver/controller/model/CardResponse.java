@@ -134,6 +134,22 @@ public class CardResponse {
         this.rarity = rarity;
     }
 
+    @Override
+    public String toString() {
+        return "CardResponse{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", set='" + set + '\'' +
+                ", foil=" + foil +
+                ", fullArt=" + fullArt +
+                ", quantity=" + quantity +
+                ", cost=" + cost +
+                ", color=" + color +
+                ", type=" + type +
+                ", rarity=" + rarity +
+                '}';
+    }
+
     public static CardResponse createCardResponse(Card card) {
 
         CardResponse cardResponse = new CardResponse();

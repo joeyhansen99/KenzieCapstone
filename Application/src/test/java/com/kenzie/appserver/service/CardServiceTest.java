@@ -70,6 +70,7 @@ public class CardServiceTest {
         record.setCardType(Collections.singletonList(CardType.CREATURE));
         record.setCardRarity(CardRarity.COMMON);
         // WHEN
+        when(cardRepository.existsById(id)).thenReturn(true);
         when(cardRepository.findById(id)).thenReturn(Optional.of(record));
         Card card = cardService.findById(id);
         // THEN

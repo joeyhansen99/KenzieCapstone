@@ -125,6 +125,22 @@ public class CardRecord {
     }
 
     @Override
+    public String toString() {
+        return "CardRecord{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", set='" + set + '\'' +
+                ", foil=" + foil +
+                ", fullArt=" + fullArt +
+                ", quantity=" + quantity +
+                ", cost=" + cost +
+                ", color=" + color +
+                ", type=" + type +
+                ", rarity=" + rarity +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
