@@ -98,7 +98,18 @@ public class Card {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Card{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", set='" + set + '\'' +
+                ", foil=" + foil +
+                ", fullArt=" + fullArt +
+                ", quantity=" + quantity +
+                ", cost=" + cost +
+                ", color=" + color +
+                ", type=" + type +
+                ", rarity=" + rarity +
+                '}';
     }
 
     @Override

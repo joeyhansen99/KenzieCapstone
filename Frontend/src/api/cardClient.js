@@ -11,7 +11,6 @@ export default class CardClient extends BaseClass {
         this.clientLoaded(axios);
     }
 
-
     clientLoaded(client) {
         this.client = client;
         if (this.props.hasOwnProperty('onReady')) {
@@ -19,7 +18,6 @@ export default class CardClient extends BaseClass {
         }
     }
 
-    //This is the main method which will get all cards from the collection
     async getAllCards(errorCallback) {
         try {
             const response = await this.client.get(`/cards/all`);
@@ -30,7 +28,6 @@ export default class CardClient extends BaseClass {
             this.handleError('getAllCards', error, errorCallback);
         }
     }
-
 
     async createCard(id, name, set, foil, fullArt, quantity, cost, color, type, rarity, errorCallback) {
         try {
@@ -56,34 +53,32 @@ export default class CardClient extends BaseClass {
         }
     }
 
-
     async updateCard(id, foil, fullArt, quantity, errorCallback) {
         try {
             const response = await this.client.patch(`/cards/${id}`, {
+                id: `${id}`,
                 foil: `${foil}`,
                 fullArt: `${fullArt}`,
                 quantity: `${quantity}`});
-            // console.log('updateCard');
-            // console.log(response.data);
+             console.log('updateCard');
+             console.log(response.data);
             return response.data;
         } catch (error) {
             this.handleError('updateCard', error, errorCallback);
         }
     }
 
-
     async getCard(id, errorCallback) {
         try {
             const response = await this.client.get(`/cards/${id}`);
-            // console.log('getCard');
-            // console.log(response.data);
+            console.log('getCard');
+            console.log(response.data);
             return response.data;
         } catch (error) {
-            this.showMessage('Card could not be found');
             this.handleError('getCard', error, errorCallback);
+            console.log("get card - id not found")
         }
     }
-
 
     async deleteCard(id, errorCallback) {
         try {
@@ -106,7 +101,6 @@ export default class CardClient extends BaseClass {
             this.handleError('getCardData', error, errorCallback);
         }
     }
-
 
     handleError(method, error, errorCallback) {
         console.error(method + ' failed - ' + error);

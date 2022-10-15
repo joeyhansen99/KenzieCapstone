@@ -1,5 +1,4 @@
 import BaseClass from '../util/baseClass';
-import DataStore from "../util/DataStore";
 import CardClient from "../api/cardClient";
 
 //This page has no mounts or event listeners - I wasn't sure what you put here when you don't need it
