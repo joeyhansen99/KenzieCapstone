@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8">
-        <title>MTG CARD COMPENDIUM</title>
+        <title>AddCardHtml</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -13,79 +13,125 @@
 
     <!-- Navigation Bar -->
     <body id="addCardPage">
-    <div class="addCardHero">
-        <nav class="addCardNavMenu">
-            <div class="addCardNavLogo">
-                MTG CARD<br>COMPENDIUM
+        <div class="addCardHero">
+            <nav class="addCardNavMenu">
+                <div class="addCardNavLogo">
+                    MTG CARD<br>COMPENDIUM
+                </div>
+    <!--            <div class="addCardNavSearchBox">-->
+    <!--                <form action="">-->
+    <!--                    <input id="addSearchValue" type="search" name="search" placeholder="Search for Magic Cards">-->
+    <!--                    <button id="addSearchSubmit" type="submit"><i class="fas fa-search"></i></button>-->
+    <!--                </form>-->
+    <!--            </div>-->
+                <ul class="addCardNavMenuItems">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="collection.html"><i class="fas fa-archive"></i> Collection</a></li>
+                    <li><a href="addCard.html"><i class="fas fa-plus-square"></i> Add Card</a></li>
+<!--                    <li><a href="#"><i class="fas fa-trash"></i> Delete</a></li>-->
+                </ul>
+            </nav>
+        </div>
+        <!-- AddCard Form -->
+        <div class="addCardLowerBody">
+            <div class="addCardForm-outerWrapper container" id="addCardForm">
+                <div class="addCardForm-innerWrapper">
+                    <div class="addCardBorder">
+                        <div class="heading">Add Card to Collection</div>
+                        <form class="addCardForm" action="#">
+                            <div class="addCardForm card-details">
+                                <div class="card-box">
+                                    <span class="details">Card Name</span>
+                                    <input id="cardNameInput" class="cardNameInput" type="text" maxlength="50"  placeholder="Enter the Card Name"/>
+                                </div>
+                                <div class="card-box">
+                                    <span class="details">Card Qty</span>
+                                    <input id="cardQtyInput" class="cardQtyInput" type="number" max="4" placeholder="Qty Owned"/>
+                                </div>
+                                <div class="card-box">
+                                    <span class="details">Set Code</span>
+                                    <input id="cardSetInput" class="cardSetInput" type="text" maxlength="3"  placeholder="3 digit set code"/>
+                                </div>
+                                <div class="card-box">
+                                    <span class="details">CMC</span>
+                                    <input id="cardCostInput" class="cardSetInput" type="number" min="0" placeholder="Enter the combined mana cost"/>
+                                </div>
+                            </div>
+                            <div class="addCardFormTypeRows typeCheckboxesForm">
+                                <span class="typeCheckboxesForm title">Card Type <a>(Can be multiple)</a></span>
+                                <div class="container-typeCheckboxes typeCheckboxes-rowOne">
+                                    <input class="CardType" type="checkbox" id="cardTypeArtifact" name="typeCheckboxes" value="ARTIFACT"> Artifact
+                                    <input class="CardType" type="checkbox" id="cardTypeConspiracy" name="typeCheckboxes" value="CONSPIRACY"> Conspiracy
+                                    <input class="CardType" type="checkbox" id="cardTypeCreature" name="typeCheckboxes" value="CREATURE"> Creature
+                                    <input class="CardType" type="checkbox" id="cardTypeEnchantment" name="typeCheckboxes" value="ENCHANTMENT"> Enchantment
+                                </div>
+                                <div class="container-typeCheckboxes typeCheckboxes-rowTwo">
+                                    <input class="CardType" type="checkbox" id="cardTypeInstant" name="typeCheckboxes" value="INSTANT"> Instant
+                                    <input class="CardType" type="checkbox" id="cardTypeLand" name="typeCheckboxes" value="LAND"> Land
+                                    <input class="CardType" type="checkbox" id="cardTypePhenomenon" name="typeCheckboxes" value="PHENOMENON"> Phenomenon
+                                    <input class="CardType" type="checkbox" id="cardTypePlane" name="typeCheckboxes" value="PLANE"> Plane
+                                </div>
+                                <div class="container-typeCheckboxes typeCheckboxes-rowThree">
+                                    <input class="CardType" type="checkbox" id="cardTypePlaneswalker" name="typeCheckboxes" value="PLANESWALKER"> Planeswalker
+                                    <input class="CardType" type="checkbox" id="cardTypeScheme" name="typeCheckboxes" value="SCHEME"> Scheme
+                                    <input class="CardType" type="checkbox" id="cardTypeSorcery" name="typeCheckboxes" value="SORCERY"> Sorcery
+                                    <input class="CardType" type="checkbox" id="cardTypeTribal" name="typeCheckboxes" value="TRIBAL"> Tribal
+                                    <input class="CardType" type="checkbox" id="cardTypeVanguard" name="typeCheckboxes" value="VANGUARD"> Vanguard
+                                </div>
+                            </div>
+                            <div class="addCardFormColorRow colorCheckboxesForm">
+                                <span class="colorCheckboxesForm title">Card Type <a>(Can be multiple)</a></span>
+                                <div class="container-colorCheckboxes colorCheckboxes-rowFour">
+                                    <input class="CardColor" type="checkbox" id="black" name="colorCheckBoxes" value="B"> Black
+                                    <input class="CardColor" type="checkbox" id="blue" name="colorCheckBoxes" value="U"> Blue
+                                    <input class="CardColor" type="checkbox" id="green" name="colorCheckBoxes" value="G"> Green
+                                    <input class="CardColor" type="checkbox" id="red" name="colorCheckBoxes" value="R"> Red
+                                    <input class="CardColor" type="checkbox" id="white" name="colorCheckBoxes" value="W"> White
+                                    <input class="CardColor" type="checkbox" id="colorless" name="colorCheckBoxes" value="COLORLESS"> Colorless
+                                </div>
+                            </div>
+
+                            <div class="cardEditableDetails">
+                                <div class="cardEditableDetails-box">
+                                    <span class="details-title">Rarity</span>
+                                    <select id="addRaritySelect" class="cardEditableFormSelect">
+                                        <option value="" disabled>Select...</option>
+                                        <option value="COMMON">COMMON</option>
+                                        <option value="UNCOMMON">UNCOMMON</option>
+                                        <option value="RARE">RARE</option>
+                                        <option value="MYTHIC_RARE">MYTHIC RARE</option>
+                                    </select>
+                                </div>
+                                <div class="radioForm-container cardEditableDetails-box">
+                                    <div class="cardEditableDetails-box radio-form">
+                                        <span class="radio-title">Foil</span>
+                                        <div class="cardEditableDetails-box category" id="addFoilWrapper">
+                                            <input type="radio" id="foilTrue" name="foil" value="foilTrue">True
+                                            <input type="radio" id="foilFalse" name="foil" value="foilFalse" checked>False
+                                        </div>
+                                    </div>
+                                    <div class="cardEditableDetails-Box radio-form">
+                                        <span class="radio-title">Full Art</span>
+                                        <div class="cardEditableDetails-box category" id="addFullArtWrapper">
+                                            <input type="radio" id="fullArtTrue" name="fullArt" value="fullArtTrue">True
+                                            <input type="radio" id="fullArtFalse" name="fullArt" value="fullArtFalse" checked>False
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="action-buttons">
+                                <div class="button addCardFormEighthRow-box">
+                                    <input class="button formBtn" type="submit" name="save">
+                                </div>
+                                <div class="button addCardFormEighthRow-box">
+                                    <input class="button formBtn" type="button" value="Clear" onclick="clearForm()">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="addCardNavSearchBox">
-                <form action="">
-                    <input id="addSearchValue" type="search" name="search" placeholder="Search for Magic Cards">
-                    <button id="addSearchSubmit" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-            <ul class="addCardNavMenuItems">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="collection.html"><i class="fas fa-archive"></i> Collection</a></li>
-                <li><a href="addCard.html"><i class="fas fa-plus-square"></i> Add Card</a></li>
-                <li><a href="#"><i class="fas fa-edit"></i> Edit</a></li>
-                <li><a href="#"><i class="fas fa-trash"></i> Delete</a></li>
-            </ul>
-        </nav>
-    </div>
-    <!-- AddCard Form -->
-    <div class="addCardForm container" id="addCardForm">
-        <div class="title">Enter Your Card</div><br>
-            <form class="addCardForm" action="#">
-                Set <input id="cardSetInput" type="text" maxlength="3"  placeholder="Enter the set code" /><br>
-                Name <input id="cardNameInput" type="text" placeholder="Enter the card name" /><br>
-                CMC <input id="cardCostInput" type="number" min="0" placeholder="Enter the combined mana cost" /><br>
-
-                <span class="CardType">Card Types</span><br>
-                <input class="CardType" type="checkbox" id="cardTypeArtifact" name="typeCheckboxes" value="ARTIFACT"> ARTIFACT<br>
-                <input class="CardType" type="checkbox" id="cardTypeConspiracy" name="typeCheckboxes" value="CONSPIRACY">  CONSPIRACY<br>
-                <input class="CardType" type="checkbox" id="cardTypeCreature" name="typeCheckboxes" value="CREATURE"> CREATURE<br>
-                <input class="CardType" type="checkbox" id="cardTypeEnchantment" name="typeCheckboxes" value="ENCHANTMENT"> ENCHANTMENT<br>
-                <input class="CardType" type="checkbox" id="cardTypeInstant" name="typeCheckboxes" value="INSTANT"> INSTANT<br>
-                <input class="CardType" type="checkbox" id="cardTypeLand" name="typeCheckboxes" value="LAND"> LAND<br>
-                <input class="CardType" type="checkbox" id="cardTypePhenomenon" name="typeCheckboxes" value="PHENOMENON"> PHENOMENON<br>
-                <input class="CardType" type="checkbox" id="cardTypePlane" name="typeCheckboxes" value="PLANE">  PLANE<br>
-                <input class="CardType" type="checkbox" id="cardTypePlaneswalker" name="typeCheckboxes" value="PLANESWALKER"> PLANESWALKER<br>
-                <input class="CardType" type="checkbox" id="cardTypeScheme" name="typeCheckboxes" value="SCHEME"> SCHEME<br>
-                <input class="CardType" type="checkbox" id="cardTypeSorcery" name="typeCheckboxes" value="SORCERY"> SORCERY<br>
-                <input class="CardType" type="checkbox" id="cardTypeTribal" name="typeCheckboxes" value="TRIBAL"> TRIBAL<br>
-                <input class="CardType" type="checkbox" id="cardTypeVanguard" name="typeCheckboxes" value="VANGUARD"> VANGUARD<br>
-
-                <span class="CardColor">Card Colors</span><br>
-                <input class="CardColor" type="checkbox" id="black" name="colorCheckBoxes" value="B"> Black<br>
-                <input class="CardColor" type="checkbox" id="blue" name="colorCheckBoxes" value="U"> Blue<br>
-                <input class="CardColor" type="checkbox" id="green" name="colorCheckBoxes" value="G"> Green<br>
-                <input class="CardColor" type="checkbox" id="red" name="colorCheckBoxes" value="R"> Red<br>
-                <input class="CardColor" type="checkbox" id="white" name="colorCheckBoxes" value="W"> White<br>
-                <input class="CardColor" type="checkbox" id="colorless" name="colorCheckBoxes" value="COLORLESS"> Colorless<br>
-
-                <span class="cardRarityDetails">Card Rarity</span>
-                <select id="addCardRarity" class="form-select">
-                    <option value="" disabled>Select...</option>
-                    <option value="COMMON">COMMON</option>
-                    <option value="UNCOMMON">UNCOMMON</option>
-                    <option value="RARE">RARE</option>
-                    <option value="MYTHIC_RARE">MYTHIC RARE</option>
-                </select><br>
-
-                <span class="cardFoil">Foil</span>
-                True <input type="radio" id="foilTrue" name="foil" value="foilTrue">
-                False <input type="radio" id="foilFalse" name="foil" value="foilFalse" checked><br>
-
-                <span class="cardFullArt">Full Art</span>
-                True <input type="radio" id="fullArtTrue" name="fullArt" value="fullArtTrue">
-                False <input type="radio" id="fullArtFalse" name="fullArt" value="fullArtFalse" checked><br>
-
-                Quantity <input id="cardQuantityInput" type="number" min="0" placeholder="Enter quantity owned" /><br><br>
-
-                <input type="submit" name="save">
-                <input type="button" value="Clear" onclick="clearForm()">
-            </form>
         </div>
     </body>
 
