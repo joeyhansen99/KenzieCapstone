@@ -30,8 +30,11 @@
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="collection.html"><i class="fas fa-archive"></i> Collection</a></li>
             <li><a href="addCard.html"><i class="fas fa-plus-square"></i> Add Card</a></li>
-            <li><form class="card-content" id="delete-all-cards-form"><button type="submit"><i class="fas fa-trash">
-                </i> Delete All</button></form></li>
+            <li><a href="#"><i class="fas fa-clone"></i> Decks</a></li>
+            <li><a href="#"><i class="fas fa-bar-chart"></i> Statistics</a></li>
+            <li><a href="#"><i class="fas fa-tags"></i> Prices</a></li>
+            <li><a><form class="card-content" id="delete-all-cards-form"><button type="submit"><i class="fas fa-trash">
+                </i> Delete All</button></form></a></li>
         </ul>
     </nav>
 </div>
@@ -114,4 +117,21 @@
     function allCardsDeletedConfirm() { confirm ("This will delete ALL cards in the collection. Are you sure?"); }
 </script>
 <script> function allCardsDeletedAlert() { alert ("All cards have been deleted!"); } </script>
+<script>
+<!--    // Search Table &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--    //CODE CITE: Build a Search Bar & Filter Table using JavaScript https://www.youtube.com/watch?v=DUF2R348D8A-->
+<!--    function searchCollection() {-->
+<!--        let filter = document.getElementById('collectionSearchInput').value.toUpperCase();-->
+<!--        console.log(filter)-->
+<!--        let collectionTable = document.getElementById('collectionTable');-->
+<!--        let tr = collectionTable.getElementsByTagName('tr');-->
+<!--        for (var i = 0; i < tr.length; i++) {-->
+<!--            let td = tr[i].getElementsByTagName('td')[1];-->
+<!--            if (td) {-->
+<!--               let rowValue = td.textContent || td.innerHTML;-->
+<!--                if(rowValue.toUppercase().indexOf(filter))-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+</script>
 </html>
