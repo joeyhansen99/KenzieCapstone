@@ -200,6 +200,7 @@
 #delete-all-cards-form button {
     border: none;
     color: #ddd;
+    cursor: pointer;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -265,6 +266,7 @@
     margin: 20px;
     margin-left: 30px;
     overflow-y: scroll;
+    /*overflow-x: scroll;*/
     max-width: fit-content;
     min-width: max-content;
 }
